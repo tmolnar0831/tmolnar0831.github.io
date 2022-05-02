@@ -1,12 +1,14 @@
 Title: Installing Apache2 on Debian linux
 Date: 2022-04-28 16:00
-Modified: 2022-04-28 16:10
+Modified: 2022-05-02 15:55
 Category: Linux
 Tags: linux, http, howto
 Slug: installing-apache2-on-debian-linux
 Authors: Tamas Molnar
 
 # Installing Apache2 on Debian 11
+
+Follow the process on my [YouTube](https://www.youtube.com/watch?v=uvbACgn_AWA) video!
 
 The expected outcome is 
 
@@ -43,6 +45,7 @@ apache2/stable 2.4.53-1~deb11u1 amd64
 * The HTTP service will start immediately with serving the default Debian Apache2 page
 * Stop the service with the `systemctl stop apache2` command
 * Open the `/etc/apache2/apache2.conf` file in a text editor and configure it carefully
+* The security related configs will go to the `/etc/apache2/conf-enabled/security.conf` file
 
 ## ServerTokens
 
@@ -71,8 +74,9 @@ By the default configuration in the lack of an index file Apahce will show the c
 **We do not want it at all!**
 
 With the `-Indexes` option the browser will get an access denied message.
+
 ```
-<Directory />
+<Directory /var/www/>
         Options -Indexes
         Options FollowSymLinks
         AllowOverride None
