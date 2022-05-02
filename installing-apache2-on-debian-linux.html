@@ -6,7 +6,7 @@
         <meta name="generator" content="Pelican" />
         <title>Installing Apache2 on Debian linux</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
-        <meta name="description" content="Installing Apache2 on Debian 11 The expected outcome is To open a browser Type the IP address of the machine (DNS configuration is a topic for..." />
+        <meta name="description" content="Installing Apache2 on Debian 11 Follow the process on my YouTube video! The expected outcome is To open a browser Type the IP address of the..." />
 </head>
 
 <body id="index" class="home">
@@ -30,8 +30,8 @@
                 Published: Thu 28 April 2022
         </abbr>
 		<br />
-        <abbr class="modified" title="2022-04-28T16:10:00+02:00">
-                Updated: Thu 28 April 2022
+        <abbr class="modified" title="2022-05-02T15:55:00+02:00">
+                Updated: Mon 02 May 2022
         </abbr>
 
         <address class="vcard author">
@@ -40,6 +40,7 @@
 <p>In <a href="/category/linux.html">Linux</a>.</p>
 <p>tags: <a href="/tag/linux.html">linux</a> <a href="/tag/http.html">http</a> <a href="/tag/howto.html">howto</a> </p>
 </footer><!-- /.post-info -->      <h1>Installing Apache2 on Debian 11</h1>
+<p>Follow the process on my <a href="https://www.youtube.com/watch?v=uvbACgn_AWA">YouTube</a> video!</p>
 <p>The expected outcome is </p>
 <ul>
 <li>To open a browser</li>
@@ -77,6 +78,7 @@
 <li>The HTTP service will start immediately with serving the default Debian Apache2 page</li>
 <li>Stop the service with the <code>systemctl stop apache2</code> command</li>
 <li>Open the <code>/etc/apache2/apache2.conf</code> file in a text editor and configure it carefully</li>
+<li>The security related configs will go to the <code>/etc/apache2/conf-enabled/security.conf</code> file</li>
 </ul>
 <h2>ServerTokens</h2>
 <p>The <code>ServerTokens</code> default configuration will display the Operating System and Apache version.
@@ -96,7 +98,7 @@ ServerTokens Prod
 <p>By the default configuration in the lack of an index file Apahce will show the contents of the directory.</p>
 <p><strong>We do not want it at all!</strong></p>
 <p>With the <code>-Indexes</code> option the browser will get an access denied message.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span> <span class="nt">/&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;Directory</span> <span class="err">/var/www</span><span class="nt">/&gt;</span>
         Options -Indexes
         Options FollowSymLinks
         AllowOverride None
