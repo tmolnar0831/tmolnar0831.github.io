@@ -5,6 +5,7 @@ Category: Linux
 Tags: linux, wsl, windows, howto
 Slug: installing-kali-on-wsl
 Authors: Tamas Molnar
+Status: hidden
 
 # Pre-install steps
 

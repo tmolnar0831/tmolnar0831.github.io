@@ -6,7 +6,9 @@ Tags: windows, wsl, howto
 Slug: how-to-backup-and-restore-wsl
 Authors: Tamas Molnar
 
-Backing up and restoring WSL distros is easier than anyone thinks! It is simply an export of the stopped distro that can be moved on an external disk or share. Restoring a backup is importing the generated tar archive.
+Follow the process on my [YouTube video](https://youtu.be/dx2WoQo8hho)!
+
+Backing up and restoring WSL distros is easier than anyone can think! It is simply an export of the stopped distro that can be moved on an external disk or share. Restoring a backup is importing the generated tar archive.
 
 Moreover we can add **multiple instances** of the same distro with exporting then importing it. With this let's say we can have three different Debian WSL boxes.
 
