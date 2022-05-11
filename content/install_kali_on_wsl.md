@@ -1,11 +1,10 @@
 Title: Installing Kali Linux on WSL
-Date: 2022-05-02
-Modified: 2022-05-02
+Date: 2022-05-11
+Modified: 2022-05-11
 Category: Linux
 Tags: linux, wsl, windows, howto
 Slug: installing-kali-on-wsl
 Authors: Tamas Molnar
-Status: hidden
 
 # Pre-install steps
 
@@ -42,7 +41,7 @@ Install the Win-KeX package:
 sudo apt install -y kali-win-kex
 ```
 
-After the installation we can install the Kali toolset:
+Then if we have enough patience and space, then we can install the whole Kali linux toolset:
 
 ```
 sudo apt install -y kali-linux-large
