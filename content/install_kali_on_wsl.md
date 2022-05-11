@@ -56,8 +56,10 @@ I use [Windows Terminal](https://apps.microsoft.com/store/detail/windows-termina
 After starting the Kali in terminal, KeX can be activated with the following command:
 
 ```
-kex --esm --ip -s
+kex
 ```
+
+It opens a TigerVNC session where the context menu can be opened by hitting the F8 key.
 
 Now we can use our usual Kali tools on Windows running a Kali WSL box.
 
