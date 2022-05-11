@@ -20,7 +20,72 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://tmolnar0831.github.io/how-to-backup-and-restore-wsl.html">How to backup and restore a distro on WSL</a></h1>
+                    <h1 class="entry-title"><a href="https://tmolnar0831.github.io/installing-kali-on-wsl.html">Installing Kali Linux on WSL</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-05-11T00:00:00+02:00">
+                Published: Wed 11 May 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-05-11T00:00:00+02:00">
+                Updated: Wed 11 May 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/linux.html">linux</a> <a href="https://tmolnar0831.github.io/tag/wsl.html">wsl</a> <a href="https://tmolnar0831.github.io/tag/windows.html">windows</a> <a href="https://tmolnar0831.github.io/tag/howto.html">howto</a> </p>
+</footer><!-- /.post-info --><h1>Pre-install steps</h1>
+<ul>
+<li>WSL must be installed on the host machine prior this task. Microsoft has an <a href="https://docs.microsoft.com/en-us/windows/wsl/install">extensive documentation</a> on the topic.</li>
+<li>Basic WSL management skills are nice to have, like importing/exporting/removing WSL instances. Use <code>wsl --help</code> for reference.</li>
+<li>Read the <a href="https://www.kali.org/get-kali/#kali-wsl">Kali documentation</a> about the topic as well.</li>
+</ul>
+<h1>Kali WSL installation</h1>
+<p>Install the Kali WSL machine from the <a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07?hl=en-us&amp;gl=US">Microsoft Store</a> and do NOT use the wsl.exe command for it. At the time of writing this document there is an error in the system when installing Kali with wsl.exe, and it installs and outdated version. Use the <a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07?hl=en-us&amp;gl=US">Microsoft Store</a> instead.</p>
+<p>After installing the Kali machine start it from the Start menu, let it install the necessary services and set up the user.</p>
+<p>In the end of the initial setup update the system with the apt:</p>
+<div class="highlight"><pre><span></span><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y
+</code></pre></div>
+
+<p>Let the process finish the upgrade, then remove the unnecessary files:</p>
+<div class="highlight"><pre><span></span><code>sudo apt autoremove
+</code></pre></div>
+
+<h1>Win-KeX installation (Kali desktop on Windows WSL)</h1>
+<p>As Microsoft more and more integrates Linux in its operating system the usability is better day by day.
+Win-KeX is giving a great Kali desktop environment on our Windows system.</p>
+<p>Install the Win-KeX package:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install -y kali-win-kex
+</code></pre></div>
+
+<p>Then if we have enough patience and space, then we can install the whole Kali linux toolset:</p>
+<div class="highlight"><pre><span></span><code>sudo apt install -y kali-linux-large
+</code></pre></div>
+
+<p>When the process stopped then we have all the tools we need for our Cyber Security learning journey.</p>
+<h1>Starting Win-KeX from Kali</h1>
+<p>I use <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&amp;gl=US">Windows Terminal</a> for its features and simplicity. </p>
+<p>After starting the Kali in terminal, KeX can be activated with the following command:</p>
+<div class="highlight"><pre><span></span><code>kex
+</code></pre></div>
+
+<p>It opens a TigerVNC session where the context menu can be opened by hitting the F8 key.</p>
+<p>Now we can use our usual Kali tools on Windows running a Kali WSL box.</p>
+<p>More <a href="https://www.kali.org/docs/wsl/win-kex/">documentation</a> about the possibilities.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://tmolnar0831.github.io/how-to-backup-and-restore-wsl.html" rel="bookmark"
+                           title="Permalink to How to backup and restore a distro on WSL">How to backup and restore a distro on WSL</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-05-02T00:00:00+02:00">
                 Published: Mon 02 May 2022
@@ -35,41 +100,12 @@
         </address>
 <p>In <a href="https://tmolnar0831.github.io/category/windows.html">Windows</a>.</p>
 <p>tags: <a href="https://tmolnar0831.github.io/tag/windows.html">windows</a> <a href="https://tmolnar0831.github.io/tag/wsl.html">wsl</a> <a href="https://tmolnar0831.github.io/tag/howto.html">howto</a> </p>
-</footer><!-- /.post-info --><p>Follow the process on my <a href="https://youtu.be/dx2WoQo8hho">YouTube video</a>!</p>
+</footer><!-- /.post-info -->                <p>Follow the process on my <a href="https://youtu.be/dx2WoQo8hho">YouTube video</a>!</p>
 <p>Backing up and restoring WSL distros is easier than anyone can think! It is simply an export of the stopped distro that can be moved on an external disk or share. Restoring a backup is importing the generated tar archive.</p>
-<p>Moreover we can add <strong>multiple instances</strong> of the same distro with exporting then importing it. With this let's say we can have three different Debian WSL boxes.</p>
-<p>To list our current distros use the following command:</p>
-<div class="highlight"><pre><span></span><code>wsl --list --verbose
-</code></pre></div>
-
-<p>It will have an output something like this:</p>
-<div class="highlight"><pre><span></span><code>  NAME          STATE           VERSION
-* Debian        Running         2
-  kali-linux    Stopped         2
-</code></pre></div>
-
-<p>To terminate a distro use the following command:</p>
-<div class="highlight"><pre><span></span><code>wsl --terminate kali-linux
-</code></pre></div>
-
-<p>The <code>kali-linux</code> is the distro name from the list command above!</p>
-<h1>Backup a WSL distro</h1>
-<p>Backing up a WSL distro happens with the <code>--export</code> option of the <code>wsl</code> command:</p>
-<div class="highlight"><pre><span></span><code><span class="n">wsl</span><span class="w"> </span><span class="o">--</span><span class="k">export</span><span class="w"> </span><span class="n">kali</span><span class="o">-</span><span class="n">linux</span><span class="w"> </span><span class="n">D</span><span class="p">:</span>\<span class="n">home_lab</span>\<span class="n">Kali_WSL</span><span class="o">.</span><span class="n">tar</span><span class="w"></span>
-</code></pre></div>
-
-<p>The command will create a tar archive at the defined place.</p>
-<h1>Restore a WSL distro</h1>
-<p>Restoring an image happens with the <code>--import</code> option.</p>
-<div class="highlight"><pre><span></span><code><span class="n">wsl</span> <span class="o">--</span><span class="kn">import</span> <span class="nn">kali</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">restored</span> <span class="n">D</span><span class="p">:</span>\<span class="n">home_lab</span>\ <span class="n">D</span><span class="p">:</span>\<span class="n">home_lab</span>\<span class="n">Kali_WSL</span><span class="o">.</span><span class="n">tar</span>
-</code></pre></div>
-
-<p>The command will restore the saved state of our WSL distro.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>Moreover we can …</p>
+                <a class="readmore" href="https://tmolnar0831.github.io/how-to-backup-and-restore-wsl.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
