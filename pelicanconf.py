@@ -21,7 +21,8 @@ LINKS = (('Pelican', 'https://getpelican.com/'),
          ('Jinja2', 'https://palletsprojects.com/p/jinja/'))
 
 # Social widget
-SOCIAL = (('Reddit', 'https://www.reddit.com/user/st_iron'),
+SOCIAL = (('Discord', 'https://discord.gg/4829xMBm'),
+          ('Reddit', 'https://www.reddit.com/user/st_iron'),
           ('YouTube', 'https://www.youtube.com/channel/UC28ChJtG8OTp1_5AWwpoh0w'),
           ('GitHub', 'https://github.com/tmolnar0831'))
 
