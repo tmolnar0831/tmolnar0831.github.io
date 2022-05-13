@@ -1,5 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-05-12T00:00:00+02:00</updated><entry><title>I started a Discord server for the site!</title><link href="https://tmolnar0831.github.io/new-discord-server.html" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-12:/new-discord-server.html</id><content type="html">&lt;p&gt;&lt;strong&gt;I registered a Discord server for the site for a better communicaton!&lt;/strong&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-05-13T00:00:00+02:00</updated><entry><title>How to upgrade to Debian Bullseye from Buster in WSL</title><link href="https://tmolnar0831.github.io/upgrade-debian-in-wsl.html" rel="alternate"></link><published>2022-05-13T00:00:00+02:00</published><updated>2022-05-13T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-13:/upgrade-debian-in-wsl.html</id><summary type="html">&lt;p&gt;If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.&lt;/p&gt;
+&lt;p&gt;The distribution upgrade happens almost the same way as on other virtual and physical platforms.&lt;/p&gt;
+&lt;p&gt;I upgrade my WSL distros while I write this post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.&lt;/p&gt;
+&lt;p&gt;The distribution upgrade happens almost the same way as on other virtual and physical platforms.&lt;/p&gt;
+&lt;p&gt;I upgrade my WSL distros while I write this post: the current Debian oldstable is 10.12 (buster),
+and I am going to upgrade to 11.03 (bullseye).&lt;/p&gt;
+&lt;p&gt;My approach is the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;prepare&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upgrade&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;checks&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Preparation&lt;/h1&gt;
+&lt;p&gt;Before we start, check the current Debian version to make sure on which version should we upgrade:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ cat /etc/debian_version 
+&lt;span class="m"&gt;10&lt;/span&gt;.12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On the &lt;a href="https://www.debian.org/releases/"&gt;releases page&lt;/a&gt; of the Debian homepage we can double-check the release names and version numbers.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Debian 10 == buster
+Debian 11 == bullseye
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we know that we want to upgrade from 10 to 11. Let's read the &lt;a href="https://www.debian.org/releases/stable/amd64/release-notes/index.en.html"&gt;release notes&lt;/a&gt; and make sure we understand the consequences of the upgrade!&lt;/p&gt;
+&lt;h1&gt;Backup&lt;/h1&gt;
+&lt;p&gt;Taking a backup of a WSL distro is realatively easy: we export the distro to a tar archive.&lt;/p&gt;
+&lt;p&gt;Terminate the WSL distro and take a backup of it as I show it in my &lt;a href="https://youtu.be/dx2WoQo8hho"&gt;video post&lt;/a&gt; on YouTube.&lt;/p&gt;
+&lt;p&gt;In case of emergency we can simply import back the the current state of the machine with its files and stuff.&lt;/p&gt;
+&lt;h1&gt;The upgrade&lt;/h1&gt;
+&lt;p&gt;The actual Debian distribution upgrade happens as the upgrade documentation states it.
+In the first phase the minimal system is being changed, then in the second phase the full upgrade happens.&lt;/p&gt;
+&lt;p&gt;Let's make sure we start with the latest Debian 10 version!&lt;/p&gt;
+&lt;p&gt;Update the current Debian buster version with the latest patches:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt update -y &amp;amp;&amp;amp; sudo apt full-upgrade -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Remove the unnecessary packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point we have a &lt;strong&gt;clean state&lt;/strong&gt; of the &lt;strong&gt;freshest&lt;/strong&gt; Debian Buster, so we are ready to change the package repository configuration, and point it to the new release.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo sed -i &amp;#39;s/buster/bullseye/g&amp;#39; /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The bullseye security repo follows a different convention than the buster repo did.
+Find the following line in the &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://security.debian.org/debian-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye/updates&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And change it to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://security.debian.org/debian-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Thus the &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; file should look something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://deb.debian.org/debian&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://deb.debian.org/debian&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-updates&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://security.debian.org/debian-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://ftp.debian.org/debian&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-backports&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Let's update the package repository cache!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo apt update
+Hit:1 http://ftp.debian.org/debian bullseye-backports InRelease
+Hit:2 http://deb.debian.org/debian bullseye InRelease
+Hit:3 http://security.debian.org/debian-security bullseye-security InRelease
+Hit:4 http://deb.debian.org/debian bullseye-updates InRelease
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+&lt;span class="m"&gt;396&lt;/span&gt; packages can be upgraded. Run &lt;span class="s1"&gt;&amp;#39;apt list --upgradable&amp;#39;&lt;/span&gt; to see them.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If everything is fine and the command ran without any error then the upgrade should happen in two phases:
+1. Minimal upgrade
+1. Full upgrade&lt;/p&gt;
+&lt;h2&gt;Minimal upgrade&lt;/h2&gt;
+&lt;p&gt;Upgrade the base system with the bullseye packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt upgrade --without-new-pkgs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If the upgrade ran without any errors, then let's clean up the unnecessary packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Full upgrade&lt;/h2&gt;
+&lt;p&gt;The full upgrade happens with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt full-upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Again if everything ran without any issue, let's clean up the packages again:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The distribution upgrade is done at this point, checks and monitoring can be done depending on the function of the system.&lt;/p&gt;
+&lt;h1&gt;Post checks&lt;/h1&gt;
+&lt;p&gt;Let's see if the upgrade was successful and we have Debian 11:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ cat /etc/debian_version
+&lt;span class="m"&gt;11&lt;/span&gt;.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The further checks depend on the system's function.&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="wsl"></category><category term="howto"></category><category term="upgrade"></category></entry><entry><title>I started a Discord server for the site!</title><link href="https://tmolnar0831.github.io/new-discord-server.html" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-12:/new-discord-server.html</id><content type="html">&lt;p&gt;&lt;strong&gt;I registered a Discord server for the site for a better communicaton!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://discord.gg/4829xMBm"&gt;Tom's IT Cafe Discord Server&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;If you have questions, comments or any critique, just pop in!&lt;/p&gt;
 &lt;p&gt;See you there!&lt;/p&gt;</content><category term="General"></category><category term="discord"></category><category term="general"></category><category term="blog"></category></entry><entry><title>Installing Kali Linux on WSL</title><link href="https://tmolnar0831.github.io/installing-kali-on-wsl.html" rel="alternate"></link><published>2022-05-11T00:00:00+02:00</published><updated>2022-05-11T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-11:/installing-kali-on-wsl.html</id><summary type="html">&lt;h1&gt;Pre-install steps&lt;/h1&gt;
