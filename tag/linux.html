@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Tom's IT Cafe - linux</title>
+        <link rel="stylesheet" href="https://tmolnar0831.github.io/theme/css/main.css" />
+        <link href="https://tmolnar0831.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Tom's IT Cafe Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://tmolnar0831.github.io/">Tom's IT Cafe</a></h1>
+                <nav><ul>
+                    <li><a href="https://tmolnar0831.github.io/pages/about.html">About</a></li>
+                    <li><a href="https://tmolnar0831.github.io/category/general.html">General</a></li>
+                    <li><a href="https://tmolnar0831.github.io/category/linux.html">Linux</a></li>
+                    <li><a href="https://tmolnar0831.github.io/category/windows.html">Windows</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://tmolnar0831.github.io/upgrade-debian-in-wsl.html">How to upgrade to Debian Bullseye from Buster in WSL</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-05-13T00:00:00+02:00">
+                Published: Fri 13 May 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-05-13T00:00:00+02:00">
+                Updated: Fri 13 May 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/linux.html">linux</a> <a href="https://tmolnar0831.github.io/tag/wsl.html">wsl</a> <a href="https://tmolnar0831.github.io/tag/howto.html">howto</a> <a href="https://tmolnar0831.github.io/tag/upgrade.html">upgrade</a> </p>
+</footer><!-- /.post-info --><p>If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.</p>
+<p>The distribution upgrade happens almost the same way as on other virtual and physical platforms.</p>
+<p>I upgrade my WSL distros while I write this post: the current Debian oldstable is 10.12 (buster),
+and I am going to upgrade to 11.03 (bullseye).</p>
+<p>My approach is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="n">prepare</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">backup</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">upgrade</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">checks</span><span class="w"></span>
+</code></pre></div>
+
+<h1>Preparation</h1>
+<p>Before we start, check the current Debian version to make sure on which version should we upgrade:</p>
+<div class="highlight"><pre><span></span><code>$ cat /etc/debian_version 
+<span class="m">10</span>.12
+</code></pre></div>
+
+<p>On the <a href="https://www.debian.org/releases/">releases page</a> of the Debian homepage we can double-check the release names and version numbers.</p>
+<div class="highlight"><pre><span></span><code>Debian 10 == buster
+Debian 11 == bullseye
+</code></pre></div>
+
+<p>Now we know that we want to upgrade from 10 to 11. Let's read the <a href="https://www.debian.org/releases/stable/amd64/release-notes/index.en.html">release notes</a> and make sure we understand the consequences of the upgrade!</p>
+<h1>Backup</h1>
+<p>Taking a backup of a WSL distro is realatively easy: we export the distro to a tar archive.</p>
+<p>Terminate the WSL distro and take a backup of it as I show it in my <a href="https://youtu.be/dx2WoQo8hho">video post</a> on YouTube.</p>
+<p>In case of emergency we can simply import back the the current state of the machine with its files and stuff.</p>
+<h1>The upgrade</h1>
+<p>The actual Debian distribution upgrade happens as the upgrade documentation states it.
+In the first phase the minimal system is being changed, then in the second phase the full upgrade happens.</p>
+<p>Let's make sure we start with the latest Debian 10 version!</p>
+<p>Update the current Debian buster version with the latest patches:</p>
+<div class="highlight"><pre><span></span><code>sudo apt update -y &amp;&amp; sudo apt full-upgrade -y
+</code></pre></div>
+
+<p>Remove the unnecessary packages:</p>
+<div class="highlight"><pre><span></span><code>sudo apt autoremove
+</code></pre></div>
+
+<p>At this point we have a <strong>clean state</strong> of the <strong>freshest</strong> Debian Buster, so we are ready to change the package repository configuration, and point it to the new release.</p>
+<div class="highlight"><pre><span></span><code>sudo sed -i &#39;s/buster/bullseye/g&#39; /etc/apt/sources.list
+</code></pre></div>
+
+<p>The bullseye security repo follows a different convention than the buster repo did.
+Find the following line in the <code>/etc/apt/sources.list</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">deb</span><span class="w"> </span><span class="s">http://security.debian.org/debian-security</span><span class="w"> </span><span class="kp">bullseye/updates</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
+</code></pre></div>
+
+<p>And change it to:</p>
+<div class="highlight"><pre><span></span><code><span class="k">deb</span><span class="w"> </span><span class="s">http://security.debian.org/debian-security</span><span class="w"> </span><span class="kp">bullseye-security</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
+</code></pre></div>
+
+<p>Thus the <code>/etc/apt/sources.list</code> file should look something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">deb</span><span class="w"> </span><span class="s">http://deb.debian.org/debian</span><span class="w"> </span><span class="kp">bullseye</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
+<span class="k">deb</span><span class="w"> </span><span class="s">http://deb.debian.org/debian</span><span class="w"> </span><span class="kp">bullseye-updates</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
+<span class="k">deb</span><span class="w"> </span><span class="s">http://security.debian.org/debian-security</span><span class="w"> </span><span class="kp">bullseye-security</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
+<span class="k">deb</span><span class="w"> </span><span class="s">http://ftp.debian.org/debian</span><span class="w"> </span><span class="kp">bullseye-backports</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
+</code></pre></div>
+
+<p>Let's update the package repository cache!</p>
+<div class="highlight"><pre><span></span><code>$ sudo apt update
+Hit:1 http://ftp.debian.org/debian bullseye-backports InRelease
+Hit:2 http://deb.debian.org/debian bullseye InRelease
+Hit:3 http://security.debian.org/debian-security bullseye-security InRelease
+Hit:4 http://deb.debian.org/debian bullseye-updates InRelease
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+<span class="m">396</span> packages can be upgraded. Run <span class="s1">&#39;apt list --upgradable&#39;</span> to see them.
+</code></pre></div>
+
+<p>If everything is fine and the command ran without any error then the upgrade should happen in two phases:
+1. Minimal upgrade
+1. Full upgrade</p>
+<h2>Minimal upgrade</h2>
+<p>Upgrade the base system with the bullseye packages:</p>
+<div class="highlight"><pre><span></span><code>sudo apt upgrade --without-new-pkgs
+</code></pre></div>
+
+<p>If the upgrade ran without any errors, then let's clean up the unnecessary packages:</p>
+<div class="highlight"><pre><span></span><code>sudo apt autoremove
+</code></pre></div>
+
+<h2>Full upgrade</h2>
+<p>The full upgrade happens with the following command:</p>
+<div class="highlight"><pre><span></span><code>sudo apt full-upgrade
+</code></pre></div>
+
+<p>Again if everything ran without any issue, let's clean up the packages again:</p>
+<div class="highlight"><pre><span></span><code>sudo apt autoremove
+</code></pre></div>
+
+<p>The distribution upgrade is done at this point, checks and monitoring can be done depending on the function of the system.</p>
+<h1>Post checks</h1>
+<p>Let's see if the upgrade was successful and we have Debian 11:</p>
+<div class="highlight"><pre><span></span><code>$ cat /etc/debian_version
+<span class="m">11</span>.3
+</code></pre></div>
+
+<p>The further checks depend on the system's function.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://tmolnar0831.github.io/installing-kali-on-wsl.html" rel="bookmark"
+                           title="Permalink to Installing Kali Linux on WSL">Installing Kali Linux on WSL</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-05-11T00:00:00+02:00">
+                Published: Wed 11 May 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-05-11T00:00:00+02:00">
+                Updated: Wed 11 May 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/linux.html">linux</a> <a href="https://tmolnar0831.github.io/tag/wsl.html">wsl</a> <a href="https://tmolnar0831.github.io/tag/windows.html">windows</a> <a href="https://tmolnar0831.github.io/tag/howto.html">howto</a> </p>
+</footer><!-- /.post-info -->                <h1>Pre-install steps</h1>
+<ul>
+<li>WSL must be installed on the host machine prior this task. Microsoft has an <a href="https://docs.microsoft.com/en-us/windows/wsl/install">extensive documentation</a> on the topic.</li>
+<li>Basic WSL management skills are nice to have, like importing/exporting/removing WSL instances. Use <code>wsl --help</code> for reference.</li>
+<li>Read the <a href="https://www.kali.org/get-kali/#kali-wsl">Kali documentation</a> about the topic as well.</li>
+</ul>
+<h1>Kali …</h1>
+                <a class="readmore" href="https://tmolnar0831.github.io/installing-kali-on-wsl.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://tmolnar0831.github.io/installing-apache2-on-debian-linux.html" rel="bookmark"
+                           title="Permalink to Installing Apache2 on Debian linux">Installing Apache2 on Debian linux</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-04-28T16:00:00+02:00">
+                Published: Thu 28 April 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-05-02T15:55:00+02:00">
+                Updated: Mon 02 May 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/linux.html">linux</a> <a href="https://tmolnar0831.github.io/tag/http.html">http</a> <a href="https://tmolnar0831.github.io/tag/howto.html">howto</a> </p>
+</footer><!-- /.post-info -->                <h1>Installing Apache2 on Debian 11</h1>
+<p>Follow the process on my <a href="https://www.youtube.com/watch?v=uvbACgn_AWA">YouTube</a> video!</p>
+<p>The expected outcome is </p>
+<ul>
+<li>To open a browser</li>
+<li>Type the IP address of the machine (DNS configuration is a topic for later)</li>
+<li>It must serve a new, custom html file called <code>index.html</code> with our string <code>"Hello, How …</code></li></ul>
+                <a class="readmore" href="https://tmolnar0831.github.io/installing-apache2-on-debian-linux.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://tmolnar0831.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://discord.gg/4829xMBm">Discord</a></li>
+                            <li><a href="https://www.reddit.com/user/st_iron">Reddit</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC28ChJtG8OTp1_5AWwpoh0w">YouTube</a></li>
+                            <li><a href="https://github.com/tmolnar0831">GitHub</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

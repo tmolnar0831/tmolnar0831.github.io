@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-05-16T00:00:00+02:00</updated><entry><title>How to rename (and backup) a Python virtual environment</title><link href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="alternate"></link><published>2022-05-16T00:00:00+02:00</published><updated>2022-05-16T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-16:/rename-a-python-venv.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
+I found magic &lt;code&gt;sed&lt;/code&gt; commands and directory traversal scripts, but they did a half work or nothing.
+I found out that recreating an env is easier and faster.&lt;/p&gt;
+&lt;p&gt;Activate the old venv …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
+I found magic &lt;code&gt;sed&lt;/code&gt; commands and directory traversal scripts, but they did a half work or nothing.
+I found out that recreating an env is easier and faster.&lt;/p&gt;
+&lt;p&gt;Activate the old venv and query the packages with &lt;a href="https://pip.pypa.io/en/stable/cli/pip_freeze/"&gt;pip freeze&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip freeze &amp;gt; requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The command will write a &lt;code&gt;requirements.txt&lt;/code&gt; file with the currently installed packages and versions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Save this file for later use!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Create a new venv with the desired name:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;python3 -m venv test_venv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Activate the new environment:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;source test_venv/bin/activate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we can &lt;a href="https://pip.pypa.io/en/stable/cli/pip_install/"&gt;install&lt;/a&gt; the packages from our old environment with using the &lt;code&gt;requirements.txt&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip install -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now the old env can be deleted or moved away.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://pip.pypa.io/en/stable/user_guide/"&gt;Python PIP documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/3/library/venv.html"&gt;Python venv documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Linux"></category><category term="python"></category><category term="venv"></category><category term="pip"></category><category term="backup"></category></entry><entry><title>How to upgrade to Debian Bullseye from Buster in WSL</title><link href="https://tmolnar0831.github.io/upgrade-debian-in-wsl.html" rel="alternate"></link><published>2022-05-13T00:00:00+02:00</published><updated>2022-05-13T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-13:/upgrade-debian-in-wsl.html</id><summary type="html">&lt;p&gt;If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.&lt;/p&gt;
+&lt;p&gt;The distribution upgrade happens almost the same way as on other virtual and physical platforms.&lt;/p&gt;
+&lt;p&gt;I upgrade my WSL distros while I write this post …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.&lt;/p&gt;
+&lt;p&gt;The distribution upgrade happens almost the same way as on other virtual and physical platforms.&lt;/p&gt;
+&lt;p&gt;I upgrade my WSL distros while I write this post: the current Debian oldstable is 10.12 (buster),
+and I am going to upgrade to 11.03 (bullseye).&lt;/p&gt;
+&lt;p&gt;My approach is the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;prepare&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;upgrade&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;checks&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Preparation&lt;/h1&gt;
+&lt;p&gt;Before we start, check the current Debian version to make sure on which version should we upgrade:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ cat /etc/debian_version 
+&lt;span class="m"&gt;10&lt;/span&gt;.12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On the &lt;a href="https://www.debian.org/releases/"&gt;releases page&lt;/a&gt; of the Debian homepage we can double-check the release names and version numbers.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Debian 10 == buster
+Debian 11 == bullseye
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we know that we want to upgrade from 10 to 11. Let's read the &lt;a href="https://www.debian.org/releases/stable/amd64/release-notes/index.en.html"&gt;release notes&lt;/a&gt; and make sure we understand the consequences of the upgrade!&lt;/p&gt;
+&lt;h1&gt;Backup&lt;/h1&gt;
+&lt;p&gt;Taking a backup of a WSL distro is realatively easy: we export the distro to a tar archive.&lt;/p&gt;
+&lt;p&gt;Terminate the WSL distro and take a backup of it as I show it in my &lt;a href="https://youtu.be/dx2WoQo8hho"&gt;video post&lt;/a&gt; on YouTube.&lt;/p&gt;
+&lt;p&gt;In case of emergency we can simply import back the the current state of the machine with its files and stuff.&lt;/p&gt;
+&lt;h1&gt;The upgrade&lt;/h1&gt;
+&lt;p&gt;The actual Debian distribution upgrade happens as the upgrade documentation states it.
+In the first phase the minimal system is being changed, then in the second phase the full upgrade happens.&lt;/p&gt;
+&lt;p&gt;Let's make sure we start with the latest Debian 10 version!&lt;/p&gt;
+&lt;p&gt;Update the current Debian buster version with the latest patches:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt update -y &amp;amp;&amp;amp; sudo apt full-upgrade -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Remove the unnecessary packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;At this point we have a &lt;strong&gt;clean state&lt;/strong&gt; of the &lt;strong&gt;freshest&lt;/strong&gt; Debian Buster, so we are ready to change the package repository configuration, and point it to the new release.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo sed -i &amp;#39;s/buster/bullseye/g&amp;#39; /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The bullseye security repo follows a different convention than the buster repo did.
+Find the following line in the &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://security.debian.org/debian-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye/updates&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And change it to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://security.debian.org/debian-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Thus the &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; file should look something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://deb.debian.org/debian&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://deb.debian.org/debian&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-updates&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://security.debian.org/debian-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-security&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;deb&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;http://ftp.debian.org/debian&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;bullseye-backports&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kp"&gt;main&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Let's update the package repository cache!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ sudo apt update
+Hit:1 http://ftp.debian.org/debian bullseye-backports InRelease
+Hit:2 http://deb.debian.org/debian bullseye InRelease
+Hit:3 http://security.debian.org/debian-security bullseye-security InRelease
+Hit:4 http://deb.debian.org/debian bullseye-updates InRelease
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+&lt;span class="m"&gt;396&lt;/span&gt; packages can be upgraded. Run &lt;span class="s1"&gt;&amp;#39;apt list --upgradable&amp;#39;&lt;/span&gt; to see them.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If everything is fine and the command ran without any error then the upgrade should happen in two phases:
+1. Minimal upgrade
+1. Full upgrade&lt;/p&gt;
+&lt;h2&gt;Minimal upgrade&lt;/h2&gt;
+&lt;p&gt;Upgrade the base system with the bullseye packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt upgrade --without-new-pkgs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If the upgrade ran without any errors, then let's clean up the unnecessary packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Full upgrade&lt;/h2&gt;
+&lt;p&gt;The full upgrade happens with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt full-upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Again if everything ran without any issue, let's clean up the packages again:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The distribution upgrade is done at this point, checks and monitoring can be done depending on the function of the system.&lt;/p&gt;
+&lt;h1&gt;Post checks&lt;/h1&gt;
+&lt;p&gt;Let's see if the upgrade was successful and we have Debian 11:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$ cat /etc/debian_version
+&lt;span class="m"&gt;11&lt;/span&gt;.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The further checks depend on the system's function.&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="wsl"></category><category term="howto"></category><category term="upgrade"></category></entry><entry><title>I started a Discord server for the site!</title><link href="https://tmolnar0831.github.io/new-discord-server.html" rel="alternate"></link><published>2022-05-12T00:00:00+02:00</published><updated>2022-05-12T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-12:/new-discord-server.html</id><content type="html">&lt;p&gt;&lt;strong&gt;I registered a Discord server for the site for a better communicaton!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://discord.gg/4829xMBm"&gt;Tom's IT Cafe Discord Server&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you have questions, comments or any critique, just pop in!&lt;/p&gt;
+&lt;p&gt;See you there!&lt;/p&gt;</content><category term="General"></category><category term="discord"></category><category term="general"></category><category term="blog"></category></entry><entry><title>Installing Kali Linux on WSL</title><link href="https://tmolnar0831.github.io/installing-kali-on-wsl.html" rel="alternate"></link><published>2022-05-11T00:00:00+02:00</published><updated>2022-05-11T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-11:/installing-kali-on-wsl.html</id><summary type="html">&lt;h1&gt;Pre-install steps&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;WSL must be installed on the host machine prior this task. Microsoft has an &lt;a href="https://docs.microsoft.com/en-us/windows/wsl/install"&gt;extensive documentation&lt;/a&gt; on the topic.&lt;/li&gt;
+&lt;li&gt;Basic WSL management skills are nice to have, like importing/exporting/removing WSL instances. Use &lt;code&gt;wsl --help&lt;/code&gt; for reference.&lt;/li&gt;
+&lt;li&gt;Read the &lt;a href="https://www.kali.org/get-kali/#kali-wsl"&gt;Kali documentation&lt;/a&gt; about the topic as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Kali …&lt;/h1&gt;</summary><content type="html">&lt;h1&gt;Pre-install steps&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;WSL must be installed on the host machine prior this task. Microsoft has an &lt;a href="https://docs.microsoft.com/en-us/windows/wsl/install"&gt;extensive documentation&lt;/a&gt; on the topic.&lt;/li&gt;
+&lt;li&gt;Basic WSL management skills are nice to have, like importing/exporting/removing WSL instances. Use &lt;code&gt;wsl --help&lt;/code&gt; for reference.&lt;/li&gt;
+&lt;li&gt;Read the &lt;a href="https://www.kali.org/get-kali/#kali-wsl"&gt;Kali documentation&lt;/a&gt; about the topic as well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Kali WSL installation&lt;/h1&gt;
+&lt;p&gt;Install the Kali WSL machine from the &lt;a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07?hl=en-us&amp;amp;gl=US"&gt;Microsoft Store&lt;/a&gt; and do NOT use the wsl.exe command for it. At the time of writing this document there is an error in the system when installing Kali with wsl.exe, and it installs and outdated version. Use the &lt;a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07?hl=en-us&amp;amp;gl=US"&gt;Microsoft Store&lt;/a&gt; instead.&lt;/p&gt;
+&lt;p&gt;After installing the Kali machine start it from the Start menu, let it install the necessary services and set up the user.&lt;/p&gt;
+&lt;p&gt;In the end of the initial setup update the system with the apt:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt update &amp;amp;&amp;amp; sudo apt full-upgrade -y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Let the process finish the upgrade, then remove the unnecessary files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt autoremove
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Win-KeX installation (Kali desktop on Windows WSL)&lt;/h1&gt;
+&lt;p&gt;As Microsoft more and more integrates Linux in its operating system the usability is better day by day.
+Win-KeX is giving a great Kali desktop environment on our Windows system.&lt;/p&gt;
+&lt;p&gt;Install the Win-KeX package:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt install -y kali-win-kex
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then if we have enough patience and space, then we can install the whole Kali linux toolset:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo apt install -y kali-linux-large
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;When the process stopped then we have all the tools we need for our Cyber Security learning journey.&lt;/p&gt;
+&lt;h1&gt;Starting Win-KeX from Kali&lt;/h1&gt;
+&lt;p&gt;I use &lt;a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&amp;amp;gl=US"&gt;Windows Terminal&lt;/a&gt; for its features and simplicity. &lt;/p&gt;
+&lt;p&gt;After starting the Kali in terminal, KeX can be activated with the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kex
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It opens a TigerVNC session where the context menu can be opened by hitting the F8 key.&lt;/p&gt;
+&lt;p&gt;Now we can use our usual Kali tools on Windows running a Kali WSL box.&lt;/p&gt;
+&lt;p&gt;More &lt;a href="https://www.kali.org/docs/wsl/win-kex/"&gt;documentation&lt;/a&gt; about the possibilities.&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="wsl"></category><category term="windows"></category><category term="howto"></category></entry><entry><title>How to backup and restore a distro on WSL</title><link href="https://tmolnar0831.github.io/how-to-backup-and-restore-wsl.html" rel="alternate"></link><published>2022-05-02T00:00:00+02:00</published><updated>2022-05-02T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-02:/how-to-backup-and-restore-wsl.html</id><summary type="html">&lt;p&gt;Follow the process on my &lt;a href="https://youtu.be/dx2WoQo8hho"&gt;YouTube video&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Backing up and restoring WSL distros is easier than anyone can think! It is simply an export of the stopped distro that can be moved on an external disk or share. Restoring a backup is importing the generated tar archive.&lt;/p&gt;
+&lt;p&gt;Moreover we can …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Follow the process on my &lt;a href="https://youtu.be/dx2WoQo8hho"&gt;YouTube video&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Backing up and restoring WSL distros is easier than anyone can think! It is simply an export of the stopped distro that can be moved on an external disk or share. Restoring a backup is importing the generated tar archive.&lt;/p&gt;
+&lt;p&gt;Moreover we can add &lt;strong&gt;multiple instances&lt;/strong&gt; of the same distro with exporting then importing it. With this let's say we can have three different Debian WSL boxes.&lt;/p&gt;
+&lt;p&gt;To list our current distros use the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wsl --list --verbose
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It will have an output something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  NAME          STATE           VERSION
+* Debian        Running         2
+  kali-linux    Stopped         2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To terminate a distro use the following command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wsl --terminate kali-linux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;kali-linux&lt;/code&gt; is the distro name from the list command above!&lt;/p&gt;
+&lt;h1&gt;Backup a WSL distro&lt;/h1&gt;
+&lt;p&gt;Backing up a WSL distro happens with the &lt;code&gt;--export&lt;/code&gt; option of the &lt;code&gt;wsl&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;wsl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;export&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;kali&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;home_lab&lt;/span&gt;\&lt;span class="n"&gt;Kali_WSL&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The command will create a tar archive at the defined place.&lt;/p&gt;
+&lt;h1&gt;Restore a WSL distro&lt;/h1&gt;
+&lt;p&gt;Restoring an image happens with the &lt;code&gt;--import&lt;/code&gt; option.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;wsl&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;kali&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;restored&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;home_lab&lt;/span&gt;\ &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;home_lab&lt;/span&gt;\&lt;span class="n"&gt;Kali_WSL&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The command will restore the saved state of our WSL distro.&lt;/p&gt;</content><category term="Windows"></category><category term="windows"></category><category term="wsl"></category><category term="howto"></category></entry><entry><title>Installing Apache2 on Debian linux</title><link href="https://tmolnar0831.github.io/installing-apache2-on-debian-linux.html" rel="alternate"></link><published>2022-04-28T16:00:00+02:00</published><updated>2022-05-02T15:55:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-04-28:/installing-apache2-on-debian-linux.html</id><summary type="html">&lt;h1&gt;Installing Apache2 on Debian 11&lt;/h1&gt;
+&lt;p&gt;Follow the process on my &lt;a href="https://www.youtube.com/watch?v=uvbACgn_AWA"&gt;YouTube&lt;/a&gt; video!&lt;/p&gt;
+&lt;p&gt;The expected outcome is &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To open a browser&lt;/li&gt;
+&lt;li&gt;Type the IP address of the machine (DNS configuration is a topic for later)&lt;/li&gt;
+&lt;li&gt;It must serve a new, custom html file called &lt;code&gt;index.html&lt;/code&gt; with our string &lt;code&gt;"Hello, How …&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;h1&gt;Installing Apache2 on Debian 11&lt;/h1&gt;
+&lt;p&gt;Follow the process on my &lt;a href="https://www.youtube.com/watch?v=uvbACgn_AWA"&gt;YouTube&lt;/a&gt; video!&lt;/p&gt;
+&lt;p&gt;The expected outcome is &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To open a browser&lt;/li&gt;
+&lt;li&gt;Type the IP address of the machine (DNS configuration is a topic for later)&lt;/li&gt;
+&lt;li&gt;It must serve a new, custom html file called &lt;code&gt;index.html&lt;/code&gt; with our string &lt;code&gt;"Hello, How are you?"&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Preparation work&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Debian 11 netinstall in a VM is ready (it will be the server)&lt;/li&gt;
+&lt;li&gt;The network configuration is ready (IP and port 80 are reachable)&lt;/li&gt;
+&lt;li&gt;Root access on the VM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some links about the topic I visited before starting the installation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The official website of the HTTP server is noted: &lt;a href="https://httpd.apache.org/"&gt;Apache2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The documentaion is already under our pillow: &lt;a href="https://httpd.apache.org/docs/2.4/"&gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A basic and &lt;strong&gt;safe&lt;/strong&gt; installation is the plan: &lt;a href="https://httpd.apache.org/docs/2.4/misc/security_tips.html"&gt;Security Tips&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The main site will go to the &lt;code&gt;/var/www/html&lt;/code&gt; directory&lt;/li&gt;
+&lt;li&gt;Protecting the system settings and information is a must&lt;/li&gt;
+&lt;li&gt;Do &lt;strong&gt;NOT&lt;/strong&gt; allow directory listing for clients&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Installation and configuration&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;SSH to the target server machine&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;su -&lt;/code&gt; to elevate the privileges to &lt;code&gt;root&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Search for the &lt;code&gt;apache2&lt;/code&gt; package in the Debian apt repo with &lt;code&gt;apt search apache2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;We will find it in the default Debian repository like the followings:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;apache2/stable 2.4.53-1~deb11u1 amd64
+  Apache HTTP Server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install the package with the &lt;code&gt;apt install -y apache2&lt;/code&gt; command&lt;/li&gt;
+&lt;li&gt;The HTTP service will start immediately with serving the default Debian Apache2 page&lt;/li&gt;
+&lt;li&gt;Stop the service with the &lt;code&gt;systemctl stop apache2&lt;/code&gt; command&lt;/li&gt;
+&lt;li&gt;Open the &lt;code&gt;/etc/apache2/apache2.conf&lt;/code&gt; file in a text editor and configure it carefully&lt;/li&gt;
+&lt;li&gt;The security related configs will go to the &lt;code&gt;/etc/apache2/conf-enabled/security.conf&lt;/code&gt; file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;ServerTokens&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;ServerTokens&lt;/code&gt; default configuration will display the Operating System and Apache version.
+Giving out this information to the possible attackers is not wise. Let them work for getting it. :)&lt;/p&gt;
+&lt;p&gt;Setting this option to &lt;code&gt;Prod&lt;/code&gt; will only show that we run an Apache web server.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ServerTokens Prod
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;ServerSignature&lt;/h2&gt;
+&lt;p&gt;Pushing our security it even further we can turn off the whole server signature with the following configuration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ServerSignature Off
+ServerTokens Prod
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After reloading the Apache configuration the service will not give out any hints about our system and server version.&lt;/p&gt;
+&lt;h2&gt;Directory listing&lt;/h2&gt;
+&lt;p&gt;By the default configuration in the lack of an index file Apahce will show the contents of the directory.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;We do not want it at all!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;With the &lt;code&gt;-Indexes&lt;/code&gt; option the browser will get an access denied message.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="err"&gt;/var/www&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        Options -Indexes
+        Options FollowSymLinks
+        AllowOverride None
+        Require all denied
+&lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Change the default site&lt;/h1&gt;
+&lt;p&gt;Now we can upload our new site that will be served by our Apache2 installation.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;rm&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Hello, How are you?&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apache2&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Open a browser and check the site!&lt;/p&gt;</content><category term="Linux"></category><category term="linux"></category><category term="http"></category><category term="howto"></category></entry></feed>
