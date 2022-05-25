@@ -1,10 +1,12 @@
 Title: How to rename (and backup) a Python virtual environment
 Date: 2022-05-16
-Modified: 2022-05-16
+Modified: 2022-05-25 07:20
 Category: Linux
 Tags: python, venv, pip, backup
 Slug: rename-a-python-venv
 Author: Tamas Molnar
+
+**Video:** [YouTube video presentation of the post](https://youtu.be/sesa3ngoU74)
 
 **In short:** I find it much easier to create a venv with the same packages than renaming one.
 I found magic `sed` commands and directory traversal scripts, but they did a half work or nothing.
