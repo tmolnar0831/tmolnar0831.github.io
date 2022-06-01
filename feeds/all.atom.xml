@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-05-25T07:20:00+02:00</updated><entry><title>How to rename (and backup) a Python virtual environment</title><link href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="alternate"></link><published>2022-05-16T00:00:00+02:00</published><updated>2022-05-25T07:20:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-16:/rename-a-python-venv.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt; &lt;a href="https://youtu.be/sesa3ngoU74"&gt;YouTube video presentation of the post&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-06-01T07:00:00+02:00</updated><entry><title>Ansible installation and thoughts about my future videos</title><link href="https://tmolnar0831.github.io/ansible-install-and-future-videos.html" rel="alternate"></link><published>2022-06-01T07:00:00+02:00</published><updated>2022-06-01T07:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-06-01:/ansible-install-and-future-videos.html</id><summary type="html">&lt;h1&gt;IT Automation&lt;/h1&gt;
+&lt;p&gt;When I was young the System and Network Administrators wrote automation shell scripts to make their jobs faster and easier. With adding some variable parameters to these scripts a whole server system could be installed in a snap. It was the first try to automate in IT.&lt;/p&gt;
+&lt;p&gt;IT …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;IT Automation&lt;/h1&gt;
+&lt;p&gt;When I was young the System and Network Administrators wrote automation shell scripts to make their jobs faster and easier. With adding some variable parameters to these scripts a whole server system could be installed in a snap. It was the first try to automate in IT.&lt;/p&gt;
+&lt;p&gt;IT Automation is the process of reducing or replacing &lt;strong&gt;direct&lt;/strong&gt; human interaction with the IT systems. People develop and maintain pipelines and automation code instead of the configuration files. It does not mean that companies need less people. The code for the automation must be maintained as well. Because of the complexity of these systems, sometimes there is a need for more DevOps people for the task.&lt;/p&gt;
+&lt;p&gt;Automation includes system and network automation as the main areas, and recently it is including security and monitoring as well.&lt;/p&gt;
+&lt;p&gt;IT Automation is a key in scaling faster, building reliable, self-healing systems and deploying reproducable services.&lt;/p&gt;
+&lt;p&gt;This technology helps to detect and eliminate &lt;strong&gt;configuration drifts&lt;/strong&gt;, and the CI/CD pipelines uncover configuration errors and mistakes easily.&lt;/p&gt;
+&lt;p&gt;So do you need to learn IT automation?&lt;/p&gt;
+&lt;p&gt;In my opinion every person in IT without exception should learn the basics of IT automation.&lt;/p&gt;
+&lt;h1&gt;Ansible&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://www.ansible.com/"&gt;Ansible&lt;/a&gt; is a basic and lightweight automation and configuration management framework.&lt;/p&gt;
+&lt;p&gt;It earned the reputation of the most beginner friendly tool to learn on the market because of its initial learning curve.&lt;/p&gt;
+&lt;p&gt;Ansible is written in &lt;a href="https://www.python.org/"&gt;Python&lt;/a&gt; and it is entirely capable of managing any size of business.&lt;/p&gt;
+&lt;p&gt;The core features of Ansible are based on the command line and they are available for anyone without buying subscriptions. Ansible is open source, the &lt;a href="https://github.com/ansible/ansible"&gt;source code&lt;/a&gt; is managed on GitHub.&lt;/p&gt;
+&lt;p&gt;A cutting edge version of the &lt;a href="https://www.ansible.com/products/controller?extIdCarryOver=true&amp;amp;sc_cid=701f2000001OH6uAAG"&gt;Ansible Automation Platform&lt;/a&gt; (previously the Ansible Tower) is available for the public, this tool is called &lt;a href="https://github.com/ansible/awx"&gt;AWX&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;AWX gives us a web user interface, additional scheduling and role based access control to our Ansible core.&lt;/p&gt;
+&lt;h1&gt;Installing an Ansible lab&lt;/h1&gt;
+&lt;p&gt;A simple Ansible management host machine can be intalled easily on any Linux machine.&lt;/p&gt;
+&lt;p&gt;Debian and Red Hat based distributions have it in their package repositories.&lt;/p&gt;
+&lt;p&gt;It's possible to install Ansible from Python PIP as well.&lt;/p&gt;
+&lt;h2&gt;Ansible in WSL&lt;/h2&gt;
+&lt;p&gt;Though in the time of this post the documentation says that Ansible is not supported in WSL I haven't found any major issue with it running Ansible in my Debian.&lt;/p&gt;
+&lt;p&gt;If you want to learn the basics of Ansible automation with a minimal-effort lab, I strongly recommend starting it in WSL and later on virtual machines can help you to scale your environment.&lt;/p&gt;
+&lt;h2&gt;PIP installation&lt;/h2&gt;
+&lt;p&gt;To install Ansible with Python PIP I created a venv.&lt;/p&gt;
+&lt;p&gt;It is in my project directory, so I can keep it synchronized between my WSL distros, computers and virtual machines.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;mkdir&lt;/span&gt; &lt;span class="nv"&gt;ansible_lab&lt;/span&gt;                  # &lt;span class="nv"&gt;create&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt; &lt;span class="nv"&gt;directory&lt;/span&gt;
+&lt;span class="nv"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;ansible_lab&lt;/span&gt;                     # &lt;span class="nv"&gt;change&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt; &lt;span class="nv"&gt;directory&lt;/span&gt;
+&lt;span class="nv"&gt;python3&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="nv"&gt;venv&lt;/span&gt; &lt;span class="nv"&gt;ansible_venv&lt;/span&gt;       # &lt;span class="nv"&gt;create&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;virtual&lt;/span&gt; &lt;span class="nv"&gt;environment&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt; &lt;span class="nv"&gt;dir&lt;/span&gt;
+&lt;span class="nv"&gt;source&lt;/span&gt; &lt;span class="nv"&gt;ansible_venv&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;activate&lt;/span&gt;   # &lt;span class="nv"&gt;activate&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;venv&lt;/span&gt;
+&lt;span class="nv"&gt;pip&lt;/span&gt; &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;ansible&lt;/span&gt;                # &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;Ansible&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;its&lt;/span&gt; &lt;span class="nv"&gt;dependencies&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;The first steps&lt;/h1&gt;
+&lt;p&gt;As a first step let's see if Ansible is installed and we see the current version.&lt;/p&gt;
+&lt;p&gt;Then let's run the first Ansible command on our local host and see if it works, try out some privilege escalation as well.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;ansible --version
+ansible localhost -m ping
+ansible localhost -m ping --become --ask-become-pass
+ansible localhost -m ansible.builtin.command -a &amp;quot;whoami&amp;quot; --become --ask-become-pass
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If all command ran without problems, then the system is ready for automating with it.&lt;/p&gt;
+&lt;h1&gt;The next steps&lt;/h1&gt;
+&lt;p&gt;I will record a video about this installation process in the following weeks.&lt;/p&gt;
+&lt;p&gt;I will go through the basic Ansible usage, configuration and remote code execution in a short "Ansible basics" series.&lt;/p&gt;
+&lt;p&gt;Depending on the interest I may record more advanced level Ansible videos.&lt;/p&gt;
+&lt;p&gt;I accept suggestions on the &lt;a href="https://discord.gg/4829xMBm"&gt;Tom's IT Cafe Discord Server&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;References&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://www.redhat.com/en/topics/automation/whats-it-automation"&gt;Red Hat - What is IT automation?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.ansible.com/"&gt;Ansible&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.redhat.com/en/about/press-releases/red-hat-ansible-automation-platform-2-drives-cloud-native-automation-and-helps-developers-become-automators"&gt;Ansible Automation Platform 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.ansible.com/"&gt;Ansible documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Linux"></category><category term="python"></category><category term="ansible"></category><category term="pip"></category></entry><entry><title>How to rename (and backup) a Python virtual environment</title><link href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="alternate"></link><published>2022-05-16T00:00:00+02:00</published><updated>2022-05-16T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-16:/rename-a-python-venv.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
 I found magic &lt;code&gt;sed&lt;/code&gt; commands and directory traversal scripts, but they did a half work or nothing.
-I found out that recreating an env is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt; &lt;a href="https://youtu.be/sesa3ngoU74"&gt;YouTube video presentation of the post&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
+I found out that recreating an env is easier and faster.&lt;/p&gt;
+&lt;p&gt;Activate the old venv …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
 I found magic &lt;code&gt;sed&lt;/code&gt; commands and directory traversal scripts, but they did a half work or nothing.
 I found out that recreating an env is easier and faster.&lt;/p&gt;
 &lt;p&gt;Activate the old venv and query the packages with &lt;a href="https://pip.pypa.io/en/stable/cli/pip_freeze/"&gt;pip freeze&lt;/a&gt;:&lt;/p&gt;

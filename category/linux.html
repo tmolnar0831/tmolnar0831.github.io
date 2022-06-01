@@ -22,14 +22,95 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://tmolnar0831.github.io/rename-a-python-venv.html">How to rename (and backup) a Python virtual environment</a></h1>
+                    <h1 class="entry-title"><a href="https://tmolnar0831.github.io/ansible-install-and-future-videos.html">Ansible installation and thoughts about my future videos</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-06-01T07:00:00+02:00">
+                Published: Wed 01 June 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-06-01T07:00:00+02:00">
+                Updated: Wed 01 June 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/python.html">python</a> <a href="https://tmolnar0831.github.io/tag/ansible.html">ansible</a> <a href="https://tmolnar0831.github.io/tag/pip.html">pip</a> </p>
+</footer><!-- /.post-info --><h1>IT Automation</h1>
+<p>When I was young the System and Network Administrators wrote automation shell scripts to make their jobs faster and easier. With adding some variable parameters to these scripts a whole server system could be installed in a snap. It was the first try to automate in IT.</p>
+<p>IT Automation is the process of reducing or replacing <strong>direct</strong> human interaction with the IT systems. People develop and maintain pipelines and automation code instead of the configuration files. It does not mean that companies need less people. The code for the automation must be maintained as well. Because of the complexity of these systems, sometimes there is a need for more DevOps people for the task.</p>
+<p>Automation includes system and network automation as the main areas, and recently it is including security and monitoring as well.</p>
+<p>IT Automation is a key in scaling faster, building reliable, self-healing systems and deploying reproducable services.</p>
+<p>This technology helps to detect and eliminate <strong>configuration drifts</strong>, and the CI/CD pipelines uncover configuration errors and mistakes easily.</p>
+<p>So do you need to learn IT automation?</p>
+<p>In my opinion every person in IT without exception should learn the basics of IT automation.</p>
+<h1>Ansible</h1>
+<p><a href="https://www.ansible.com/">Ansible</a> is a basic and lightweight automation and configuration management framework.</p>
+<p>It earned the reputation of the most beginner friendly tool to learn on the market because of its initial learning curve.</p>
+<p>Ansible is written in <a href="https://www.python.org/">Python</a> and it is entirely capable of managing any size of business.</p>
+<p>The core features of Ansible are based on the command line and they are available for anyone without buying subscriptions. Ansible is open source, the <a href="https://github.com/ansible/ansible">source code</a> is managed on GitHub.</p>
+<p>A cutting edge version of the <a href="https://www.ansible.com/products/controller?extIdCarryOver=true&amp;sc_cid=701f2000001OH6uAAG">Ansible Automation Platform</a> (previously the Ansible Tower) is available for the public, this tool is called <a href="https://github.com/ansible/awx">AWX</a>.</p>
+<p>AWX gives us a web user interface, additional scheduling and role based access control to our Ansible core.</p>
+<h1>Installing an Ansible lab</h1>
+<p>A simple Ansible management host machine can be intalled easily on any Linux machine.</p>
+<p>Debian and Red Hat based distributions have it in their package repositories.</p>
+<p>It's possible to install Ansible from Python PIP as well.</p>
+<h2>Ansible in WSL</h2>
+<p>Though in the time of this post the documentation says that Ansible is not supported in WSL I haven't found any major issue with it running Ansible in my Debian.</p>
+<p>If you want to learn the basics of Ansible automation with a minimal-effort lab, I strongly recommend starting it in WSL and later on virtual machines can help you to scale your environment.</p>
+<h2>PIP installation</h2>
+<p>To install Ansible with Python PIP I created a venv.</p>
+<p>It is in my project directory, so I can keep it synchronized between my WSL distros, computers and virtual machines.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">mkdir</span> <span class="nv">ansible_lab</span>                  # <span class="nv">create</span> <span class="nv">a</span> <span class="nv">project</span> <span class="nv">directory</span>
+<span class="nv">cd</span> <span class="nv">ansible_lab</span>                     # <span class="nv">change</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">project</span> <span class="nv">directory</span>
+<span class="nv">python3</span> <span class="o">-</span><span class="nv">m</span> <span class="nv">venv</span> <span class="nv">ansible_venv</span>       # <span class="nv">create</span> <span class="nv">a</span> <span class="nv">virtual</span> <span class="nv">environment</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">project</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">project</span> <span class="nv">dir</span>
+<span class="nv">source</span> <span class="nv">ansible_venv</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">activate</span>   # <span class="nv">activate</span> <span class="nv">the</span> <span class="nv">venv</span>
+<span class="nv">pip</span> <span class="nv">install</span> <span class="nv">ansible</span>                # <span class="nv">install</span> <span class="nv">Ansible</span> <span class="nv">and</span> <span class="nv">its</span> <span class="nv">dependencies</span>
+</code></pre></div>
+
+<h1>The first steps</h1>
+<p>As a first step let's see if Ansible is installed and we see the current version.</p>
+<p>Then let's run the first Ansible command on our local host and see if it works, try out some privilege escalation as well.</p>
+<div class="highlight"><pre><span></span><code>ansible --version
+ansible localhost -m ping
+ansible localhost -m ping --become --ask-become-pass
+ansible localhost -m ansible.builtin.command -a &quot;whoami&quot; --become --ask-become-pass
+</code></pre></div>
+
+<p>If all command ran without problems, then the system is ready for automating with it.</p>
+<h1>The next steps</h1>
+<p>I will record a video about this installation process in the following weeks.</p>
+<p>I will go through the basic Ansible usage, configuration and remote code execution in a short "Ansible basics" series.</p>
+<p>Depending on the interest I may record more advanced level Ansible videos.</p>
+<p>I accept suggestions on the <a href="https://discord.gg/4829xMBm">Tom's IT Cafe Discord Server</a>.</p>
+<h1>References</h1>
+<ol>
+<li><a href="https://www.redhat.com/en/topics/automation/whats-it-automation">Red Hat - What is IT automation?</a></li>
+<li><a href="https://www.ansible.com/">Ansible</a></li>
+<li><a href="https://www.redhat.com/en/about/press-releases/red-hat-ansible-automation-platform-2-drives-cloud-native-automation-and-helps-developers-become-automators">Ansible Automation Platform 2</a></li>
+<li><a href="https://docs.ansible.com/">Ansible documentation</a></li>
+</ol>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="bookmark"
+                           title="Permalink to How to rename (and backup) a Python virtual environment">How to rename (and backup) a Python virtual environment</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-05-16T00:00:00+02:00">
                 Published: Mon 16 May 2022
         </abbr>
 		<br />
-        <abbr class="modified" title="2022-05-25T07:20:00+02:00">
-                Updated: Wed 25 May 2022
+        <abbr class="modified" title="2022-05-16T00:00:00+02:00">
+                Updated: Mon 16 May 2022
         </abbr>
 
         <address class="vcard author">
@@ -37,38 +118,13 @@
         </address>
 <p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
 <p>tags: <a href="https://tmolnar0831.github.io/tag/python.html">python</a> <a href="https://tmolnar0831.github.io/tag/venv.html">venv</a> <a href="https://tmolnar0831.github.io/tag/pip.html">pip</a> <a href="https://tmolnar0831.github.io/tag/backup.html">backup</a> </p>
-</footer><!-- /.post-info --><p><strong>Video:</strong> <a href="https://youtu.be/sesa3ngoU74">YouTube video presentation of the post</a></p>
-<p><strong>In short:</strong> I find it much easier to create a venv with the same packages than renaming one.
+</footer><!-- /.post-info -->                <p><strong>In short:</strong> I find it much easier to create a venv with the same packages than renaming one.
 I found magic <code>sed</code> commands and directory traversal scripts, but they did a half work or nothing.
 I found out that recreating an env is easier and faster.</p>
-<p>Activate the old venv and query the packages with <a href="https://pip.pypa.io/en/stable/cli/pip_freeze/">pip freeze</a>:</p>
-<div class="highlight"><pre><span></span><code>pip freeze &gt; requirements.txt
-</code></pre></div>
-
-<p>The command will write a <code>requirements.txt</code> file with the currently installed packages and versions.</p>
-<p><strong>Save this file for later use!</strong></p>
-<p>Create a new venv with the desired name:</p>
-<div class="highlight"><pre><span></span><code>python3 -m venv test_venv
-</code></pre></div>
-
-<p>Activate the new environment:</p>
-<div class="highlight"><pre><span></span><code>source test_venv/bin/activate
-</code></pre></div>
-
-<p>Now we can <a href="https://pip.pypa.io/en/stable/cli/pip_install/">install</a> the packages from our old environment with using the <code>requirements.txt</code> file:</p>
-<div class="highlight"><pre><span></span><code>pip install -r requirements.txt
-</code></pre></div>
-
-<p>Now the old env can be deleted or moved away.</p>
-<ol>
-<li><a href="https://pip.pypa.io/en/stable/user_guide/">Python PIP documentation</a></li>
-<li><a href="https://docs.python.org/3/library/venv.html">Python venv documentation</a></li>
-</ol>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>Activate the old venv …</p>
+                <a class="readmore" href="https://tmolnar0831.github.io/rename-a-python-venv.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
