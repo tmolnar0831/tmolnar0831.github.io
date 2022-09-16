@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-06-02T07:00:00+02:00</updated><entry><title>Mechanical keyboards: I purchased a Keychron K2 v2</title><link href="https://tmolnar0831.github.io/mechanical-keyboards.html" rel="alternate"></link><published>2022-06-02T07:00:00+02:00</published><updated>2022-06-02T07:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-06-02:/mechanical-keyboards.html</id><summary type="html">&lt;p&gt;My first computer was a C64 when I was a child. Later when I used the first i486 PC (still as a child) it had an IBM keyboard.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-09-16T16:00:00+02:00</updated><entry><title>The future of DevOps</title><link href="https://tmolnar0831.github.io/the-future-of-devops.html" rel="alternate"></link><published>2022-09-16T00:00:00+02:00</published><updated>2022-09-16T16:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-09-16:/the-future-of-devops.html</id><summary type="html">&lt;p&gt;A lot of people are talking about the future of the IT, the traditional operations work, and they are trying to guess whether they will have a job in IT in the future.&lt;/p&gt;
+&lt;p&gt;As I see most IT colleagues feel some uncertainty about their jobs.
+Different positions (and position names …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A lot of people are talking about the future of the IT, the traditional operations work, and they are trying to guess whether they will have a job in IT in the future.&lt;/p&gt;
+&lt;p&gt;As I see most IT colleagues feel some uncertainty about their jobs.
+Different positions (and position names) come and go at the huge tech, telco and financial companies. The fluctuation of the people is also constant.&lt;/p&gt;
+&lt;p&gt;Do you think your job is in danger? Read further!&lt;/p&gt;
+&lt;p&gt;Spoiler: &lt;a href="https://www.linkedin.com/pulse/11-most-in-demand-tech-jobs-2022-girish-sharma/"&gt;We don't have to be worried!&lt;/a&gt; / &lt;a href="https://www.comptia.org/blog/top-it-skills-in-demand"&gt;There is a huge demand for IT professionals!&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;DevOps, DevSecOps, SRE and so on&lt;/h1&gt;
+&lt;p&gt;With the COVID-19 pandemic and in our unstable economy the careers in IT changed a lot.
+Not just the multinational enterprises, but even the small companies are transitioning to remote work or hybrid work.
+They reduce the size of their offices and cut costs with this step. On the other hand they can support the home office of their employees.&lt;/p&gt;
+&lt;p&gt;This remote work must be supported by a secure and strong IT infrastructure. The infrastructure must be architecturally planned, documented and tested thoroughly.
+A great IT automation and configuration management system is a must.&lt;/p&gt;
+&lt;p&gt;So the DevOps architects, engineers and Site Reliablility Engineers are in high demand around the world.&lt;/p&gt;
+&lt;p&gt;Strong IT infrastructure means reliable security. With introducing new entry points to the system, employers need more data security to avoid breaches and break-ins.&lt;/p&gt;
+&lt;p&gt;Companies need more and more people with the right security knowledge in their teams. Security and DevOps can be fused together, and we can work as DevSecOps or something like that.&lt;/p&gt;
+&lt;p&gt;Needless to mention that there is a high demand for people researching AI.&lt;/p&gt;
+&lt;p&gt;So we can say that jobs in IT are strong and the talented people are in high demand. According to a job site in my country there are around 30% less IT professionals than positions to fill. I hear similar numbers around Europe.&lt;/p&gt;
+&lt;h1&gt;There is future in IT for sure&lt;/h1&gt;
+&lt;p&gt;Yes, we can build a nice career in IT following some rules.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Learn, read, study, experiment and try to stay up to date.&lt;/li&gt;
+&lt;li&gt;Never settle with your current knowledge - the market changes, the technology changes - go to point 1. and stay up to date.&lt;/li&gt;
+&lt;li&gt;Repeate the above&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I am not kidding: this is one of the most irritating thing I see among IT practitioners. They settle with their knowledge for years, it becomes obsolate and rusty.&lt;/p&gt;
+&lt;p&gt;It is our responsibility to read about new technology, to remain on the top. &lt;/p&gt;</content><category term="Linux"></category><category term="devops"></category><category term="security"></category><category term="it"></category></entry><entry><title>Mechanical keyboards: I purchased a Keychron K2 v2</title><link href="https://tmolnar0831.github.io/mechanical-keyboards.html" rel="alternate"></link><published>2022-06-02T07:00:00+02:00</published><updated>2022-06-02T07:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-06-02:/mechanical-keyboards.html</id><summary type="html">&lt;p&gt;My first computer was a C64 when I was a child. Later when I used the first i486 PC (still as a child) it had an IBM keyboard.&lt;/p&gt;
 &lt;p&gt;A beautiful, white-grey and clicky keyboard, I guess it was the Model M.&lt;/p&gt;
 &lt;p&gt;The memory of writing on such a great keyboard …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My first computer was a C64 when I was a child. Later when I used the first i486 PC (still as a child) it had an IBM keyboard.&lt;/p&gt;
 &lt;p&gt;A beautiful, white-grey and clicky keyboard, I guess it was the Model M.&lt;/p&gt;
@@ -90,10 +116,11 @@ ansible localhost -m ansible.builtin.command -a &amp;quot;whoami&amp;quot; --bec
 &lt;li&gt;&lt;a href="https://www.ansible.com/"&gt;Ansible&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.redhat.com/en/about/press-releases/red-hat-ansible-automation-platform-2-drives-cloud-native-automation-and-helps-developers-become-automators"&gt;Ansible Automation Platform 2&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://docs.ansible.com/"&gt;Ansible documentation&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="Linux"></category><category term="python"></category><category term="ansible"></category><category term="pip"></category></entry><entry><title>How to rename (and backup) a Python virtual environment</title><link href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="alternate"></link><published>2022-05-16T00:00:00+02:00</published><updated>2022-05-16T00:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-16:/rename-a-python-venv.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
+&lt;/ol&gt;</content><category term="Linux"></category><category term="python"></category><category term="ansible"></category><category term="pip"></category></entry><entry><title>How to rename (and backup) a Python virtual environment</title><link href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="alternate"></link><published>2022-05-16T00:00:00+02:00</published><updated>2022-05-25T07:20:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-05-16:/rename-a-python-venv.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt; &lt;a href="https://youtu.be/sesa3ngoU74"&gt;YouTube video presentation of the post&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
 I found magic &lt;code&gt;sed&lt;/code&gt; commands and directory traversal scripts, but they did a half work or nothing.
-I found out that recreating an env is easier and faster.&lt;/p&gt;
-&lt;p&gt;Activate the old venv …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
+I found out that recreating an env is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt; &lt;a href="https://youtu.be/sesa3ngoU74"&gt;YouTube video presentation of the post&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;In short:&lt;/strong&gt; I find it much easier to create a venv with the same packages than renaming one.
 I found magic &lt;code&gt;sed&lt;/code&gt; commands and directory traversal scripts, but they did a half work or nothing.
 I found out that recreating an env is easier and faster.&lt;/p&gt;
 &lt;p&gt;Activate the old venv and query the packages with &lt;a href="https://pip.pypa.io/en/stable/cli/pip_freeze/"&gt;pip freeze&lt;/a&gt;:&lt;/p&gt;
