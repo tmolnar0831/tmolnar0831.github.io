@@ -2,7 +2,7 @@ Title: Mechanical keyboards: I purchased a Keychron K2 v2
 Date: 2022-06-02 07:00
 Modified: 2022-06-02 07:00
 Category: General
-Tags: keyboard, hardware
+Tags: keyboard, hardware, keychron
 Slug: mechanical-keyboards
 Author: Tamas Molnar
 

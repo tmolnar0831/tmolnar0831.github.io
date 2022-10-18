@@ -1,7 +1,7 @@
 Title: Installing Kali Linux on WSL
 Date: 2022-05-11
 Modified: 2022-05-11
-Category: Linux
+Category: Windows
 Tags: linux, wsl, windows, howto
 Slug: installing-kali-on-wsl
 Authors: Tamas Molnar

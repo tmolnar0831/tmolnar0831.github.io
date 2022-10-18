@@ -1,7 +1,7 @@
 Title: The future of DevOps
 Date: 2022-09-16
 Modified: 2022-09-16 16:00
-Category: Linux
+Category: General
 Tags: devops, security, it
 Slug: the-future-of-devops
 Author: Tamas Molnar

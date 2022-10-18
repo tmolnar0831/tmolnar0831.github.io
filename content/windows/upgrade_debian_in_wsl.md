@@ -1,7 +1,7 @@
 Title: How to upgrade to Debian Bullseye from Buster in WSL
 Date: 2022-05-13
 Modified: 2022-05-13
-Category: Linux
+Category: Windows
 Tags: linux, wsl, howto, upgrade
 Slug: upgrade-debian-in-wsl
 Author: Tamas Molnar
