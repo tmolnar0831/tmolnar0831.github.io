@@ -1,11 +1,10 @@
 Title: Why should you learn and use Ansible right now?
 Date: 2022-10-13 07:00
-Modified: 2022-10-18 17:00
+Modified: 2022-10-18 18:00
 Category: Linux
 Tags: python, ansible, automation
 Slug: why-should-you-learn-ansible-now
 Author: Tamas Molnar
-Status: draft
 
 Whether you have some devices at home, you operate a small office with a couple of computers or you are one of the sysadmins in a large organization, Ansible can work for you (or instead of you).
 
