@@ -5,24 +5,72 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
         <title>Tom's IT Cafe - Linux</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+        <link rel="stylesheet" href="https://tmolnar0831.github.io/theme/css/main.css" />
         <link href="https://tmolnar0831.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Tom's IT Cafe Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="../">Tom's IT Cafe <strong>Come, get some!</strong></a></h1>
+                <h1><a href="https://tmolnar0831.github.io/">Tom's IT Cafe <strong>Come, get some!</strong></a></h1>
                 <nav><ul>
-                    <li><a href="../pages/about.html">About me</a></li>
-                    <li><a href="../category/general.html">General</a></li>
-                    <li class="active"><a href="../category/linux.html">Linux</a></li>
-                    <li><a href="../category/windows.html">Windows</a></li>
+                    <li><a href="https://tmolnar0831.github.io/pages/about.html">About me</a></li>
+                    <li><a href="https://tmolnar0831.github.io/category/general.html">General</a></li>
+                    <li class="active"><a href="https://tmolnar0831.github.io/category/linux.html">Linux</a></li>
+                    <li><a href="https://tmolnar0831.github.io/category/windows.html">Windows</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../ansible-install.html">Ansible installation</a></h1>
+                    <h1 class="entry-title"><a href="https://tmolnar0831.github.io/why-should-you-learn-ansible-now.html">Why should you learn and use Ansible right now?</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-10-13T07:00:00+02:00">
+                Published: Thu 13 October 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-10-18T18:00:00+02:00">
+                Updated: Tue 18 October 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/python.html">python</a> <a href="https://tmolnar0831.github.io/tag/ansible.html">ansible</a> <a href="https://tmolnar0831.github.io/tag/automation.html">automation</a> </p>
+</footer><!-- /.post-info --><p>Whether you have some devices at home, you operate a small office with a couple of computers or you are one of the sysadmins in a large organization, Ansible can work for you (or instead of you).</p>
+<p><a href="https://docs.ansible.com/ansible-core/devel/index.html">Ansible</a> is a lightweight but very powerful configuration management and orchestration framework. It can connect to the hosts on different channels, like network-cli, netconf or through SSH.</p>
+<p>Ansible is radically simple, it uses YAML for structuring its command files called "<a href="https://docs.ansible.com/ansible-core/devel/playbook_guide/index.html">playbooks</a>".</p>
+<p>It is an <a href="https://github.com/ansible/ansible">open source project</a> backed and developed by Red Hat.</p>
+<p><img alt="Ansible" src="../images/ansible_logo.png" title="Ansible logo"></p>
+<p>I don't have to explain what does it mean not to use SCM and config management.</p>
+<p>Without proper configuration management a simple configuration drift can cause serious service distruptions.
+Most of the time the configuration of an infrastructure just grows incrementally until a point where nobody knows the reasons behind changes. There can be multiple instances of configuration files for a service with slighty different style and data. This causes confusion and major issues. The solution for this more-than-a-decade-old problem was writing scripts for configuration managment. Over the years it evolved to invent tools like <a href="https://cfengine.com/">CFEngine</a>, <a href="https://puppet.com/">Puppet</a>, <a href="https://www.chef.io/">Chef</a>, <a href="https://saltproject.io/">Salt</a> and <a href="https://www.ansible.com/">Ansible</a>. There are more to mention, but these were the top competitors of the market for long. Both tools went over an evolution, and they targeted different styles of operations. Ansible is simple with a possibility to extend the system as it evolves.</p>
+<p>You can install Ansible on your Windows notebook using WSL2 and it can be used to manage any home and/or office infrastructure in a snap. Later on the whole code base can be moved easily to a central Ansible host from where the management can happen. From an easy-to-use and easy-to-understand system the evolution will lead you to use roles and variables till a pont to use Ansible Vault (or later more sophisticated credential management tools). The roles, inventories and (public) variable files can be stored in central source control management as GitLab or GitHub. With minimal effor you are doing infrastructure as code.</p>
+<p>With infrastructure as code the administrators push the configurations into source control management. Every change in the configuration is timestamped, logged and commented for avoiding the later confusion. It is very useful even in your home network.</p>
+<p>This approach may feel a bit of overhead initially, but the reward is huge. Every change has a reason, and it is stored in a searchable form. Configuration changes become revertable easily.</p>
+<p>Ansible helps to avoid configuration drifts too. It effectively automates the repetitive tasks. On the other hand Ansible helps to separate different layers of the operations like credential/secret management, variables and infrastructure code.</p>
+<p>Summarizing the thoughts above:</p>
+<ul>
+<li>Ansible is a simple config management and orchestration framework.</li>
+<li>It helps to standardize the configuration handling.</li>
+<li>It manages the automation of repetitive tasks.</li>
+<li>Ansible can scale with your knowledge and with the size of the managed system as well.</li>
+<li>Ansible is an open source project available on GitHub.</li>
+</ul>
+<p>If you want to share your comments or thoughts, join the <a href="https://discord.gg/YbSYGsQYES">Tom's IT Cafe Discord Server here</a>!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://tmolnar0831.github.io/ansible-install.html" rel="bookmark"
+                           title="Permalink to Ansible installation">Ansible installation</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-06-01T07:00:00+02:00">
                 Published: Wed 01 June 2022
@@ -33,70 +81,20 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
         </address>
-<p>In <a href="../category/linux.html">Linux</a>.</p>
-<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/ansible.html">ansible</a> <a href="../tag/pip.html">pip</a> </p>
-</footer><!-- /.post-info --><h1>IT Automation</h1>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/python.html">python</a> <a href="https://tmolnar0831.github.io/tag/ansible.html">ansible</a> <a href="https://tmolnar0831.github.io/tag/pip.html">pip</a> </p>
+</footer><!-- /.post-info -->                <h1>IT Automation</h1>
 <p>When I was young the System and Network Administrators wrote automation shell scripts to make their jobs faster and easier. With adding some variable parameters to these scripts a whole server system could be installed in a snap. It was the first try to automate in IT.</p>
-<p>IT Automation is the process of reducing or replacing <strong>direct</strong> human interaction with the IT systems. People develop and maintain pipelines and automation code instead of the configuration files. It does not mean that companies need less people. The code for the automation must be maintained as well. Because of the complexity of these systems, sometimes there is a need for more DevOps people for the task.</p>
-<p>Automation includes system and network automation as the main areas, and recently it is including security and monitoring as well.</p>
-<p>IT Automation is a key in scaling faster, building reliable, self-healing systems and deploying reproducable services.</p>
-<p>This technology helps to detect and eliminate <strong>configuration drifts</strong>, and the CI/CD pipelines uncover configuration errors and mistakes easily.</p>
-<p>So do you need to learn IT automation?</p>
-<p>In my opinion every person in IT without exception should learn the basics of IT automation.</p>
-<h1>Ansible</h1>
-<p><a href="https://www.ansible.com/">Ansible</a> is a basic and lightweight automation and configuration management framework.</p>
-<p>It earned the reputation of the most beginner friendly tool to learn on the market because of its initial learning curve.</p>
-<p>Ansible is written in <a href="https://www.python.org/">Python</a> and it is entirely capable of managing any size of business.</p>
-<p>The core features of Ansible are based on the command line and they are available for anyone without buying subscriptions. Ansible is open source, the <a href="https://github.com/ansible/ansible">source code</a> is managed on GitHub.</p>
-<p>A cutting edge version of the <a href="https://www.ansible.com/products/controller?extIdCarryOver=true&amp;sc_cid=701f2000001OH6uAAG">Ansible Automation Platform</a> (previously the Ansible Tower) is available for the public, this tool is called <a href="https://github.com/ansible/awx">AWX</a>.</p>
-<p>AWX gives us a web user interface, additional scheduling and role based access control to our Ansible core.</p>
-<h1>Installing an Ansible lab</h1>
-<p>A simple Ansible management host machine can be intalled easily on any Linux machine.</p>
-<p>Debian and Red Hat based distributions have it in their package repositories.</p>
-<p>It's possible to install Ansible from Python PIP as well.</p>
-<h2>Ansible in WSL</h2>
-<p>Though in the time of this post the documentation says that Ansible is not supported in WSL I haven't found any major issue with it running Ansible in my Debian.</p>
-<p>If you want to learn the basics of Ansible automation with a minimal-effort lab, I strongly recommend starting it in WSL and later on virtual machines can help you to scale your environment.</p>
-<h2>PIP installation</h2>
-<p>To install Ansible with Python PIP I created a venv.</p>
-<p>It is in my project directory, so I can keep it synchronized between my WSL distros, computers and virtual machines.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">mkdir</span> <span class="nv">ansible_lab</span>                  # <span class="nv">create</span> <span class="nv">a</span> <span class="nv">project</span> <span class="nv">directory</span>
-<span class="nv">cd</span> <span class="nv">ansible_lab</span>                     # <span class="nv">change</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">project</span> <span class="nv">directory</span>
-<span class="nv">python3</span> <span class="o">-</span><span class="nv">m</span> <span class="nv">venv</span> <span class="nv">ansible_venv</span>       # <span class="nv">create</span> <span class="nv">a</span> <span class="nv">virtual</span> <span class="nv">environment</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">project</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">project</span> <span class="nv">dir</span>
-<span class="nv">source</span> <span class="nv">ansible_venv</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">activate</span>   # <span class="nv">activate</span> <span class="nv">the</span> <span class="nv">venv</span>
-<span class="nv">pip</span> <span class="nv">install</span> <span class="nv">ansible</span>                # <span class="nv">install</span> <span class="nv">Ansible</span> <span class="nv">and</span> <span class="nv">its</span> <span class="nv">dependencies</span>
-</code></pre></div>
-
-<h1>The first steps</h1>
-<p>As a first step let's see if Ansible is installed and we see the current version.</p>
-<p>Then let's run the first Ansible command on our local host and see if it works, try out some privilege escalation as well.</p>
-<div class="highlight"><pre><span></span><code>ansible --version
-ansible localhost -m ping
-ansible localhost -m ping --become --ask-become-pass
-ansible localhost -m ansible.builtin.command -a &quot;whoami&quot; --become --ask-become-pass
-</code></pre></div>
-
-<p>If all command ran without problems, then the system is ready for automating with it.</p>
-<h1>The next steps</h1>
-<p>I accept suggestions on the <a href="https://discord.gg/4829xMBm">Tom's IT Cafe Discord Server</a>.</p>
-<h1>References</h1>
-<ol>
-<li><a href="https://www.redhat.com/en/topics/automation/whats-it-automation">Red Hat - What is IT automation?</a></li>
-<li><a href="https://www.ansible.com/">Ansible</a></li>
-<li><a href="https://www.redhat.com/en/about/press-releases/red-hat-ansible-automation-platform-2-drives-cloud-native-automation-and-helps-developers-become-automators">Ansible Automation Platform 2</a></li>
-<li><a href="https://docs.ansible.com/">Ansible documentation</a></li>
-</ol>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>IT …</p>
+                <a class="readmore" href="https://tmolnar0831.github.io/ansible-install.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="../rename-a-python-venv.html" rel="bookmark"
+                    <h1><a href="https://tmolnar0831.github.io/rename-a-python-venv.html" rel="bookmark"
                            title="Permalink to How to rename (and backup) a Python virtual environment">How to rename (and backup) a Python virtual environment</a></h1>
                 </header>
 
@@ -111,21 +109,21 @@ ansible localhost -m ansible.builtin.command -a &quot;whoami&quot; --become --as
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
         </address>
-<p>In <a href="../category/linux.html">Linux</a>.</p>
-<p>tags: <a href="../tag/python.html">python</a> <a href="../tag/venv.html">venv</a> <a href="../tag/pip.html">pip</a> <a href="../tag/backup.html">backup</a> </p>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/python.html">python</a> <a href="https://tmolnar0831.github.io/tag/venv.html">venv</a> <a href="https://tmolnar0831.github.io/tag/pip.html">pip</a> <a href="https://tmolnar0831.github.io/tag/backup.html">backup</a> </p>
 </footer><!-- /.post-info -->                <p><strong>Video:</strong> <a href="https://youtu.be/sesa3ngoU74">YouTube video presentation of the post</a></p>
 <p><strong>In short:</strong> I find it much easier to create a venv with the same packages than renaming one.
 I found magic <code>sed</code> commands and directory traversal scripts, but they did a half work or nothing.
 I found out that recreating an env is …</p>
-                <a class="readmore" href="../rename-a-python-venv.html">read more</a>
+                <a class="readmore" href="https://tmolnar0831.github.io/rename-a-python-venv.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="../installing-apache2-on-debian-linux.html" rel="bookmark"
+                    <h1><a href="https://tmolnar0831.github.io/installing-apache2-on-debian-linux.html" rel="bookmark"
                            title="Permalink to Installing Apache2 on Debian linux">Installing Apache2 on Debian linux</a></h1>
                 </header>
 
@@ -140,10 +138,10 @@ I found out that recreating an env is …</p>
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
+                By                         <a class="url fn" href="https://tmolnar0831.github.io/author/tamas-molnar.html">Tamas Molnar</a>
         </address>
-<p>In <a href="../category/linux.html">Linux</a>.</p>
-<p>tags: <a href="../tag/linux.html">linux</a> <a href="../tag/http.html">http</a> <a href="../tag/howto.html">howto</a> </p>
+<p>In <a href="https://tmolnar0831.github.io/category/linux.html">Linux</a>.</p>
+<p>tags: <a href="https://tmolnar0831.github.io/tag/linux.html">linux</a> <a href="https://tmolnar0831.github.io/tag/http.html">http</a> <a href="https://tmolnar0831.github.io/tag/howto.html">howto</a> </p>
 </footer><!-- /.post-info -->                <h1>Installing Apache2 on Debian 11</h1>
 <p>Follow the process on my <a href="https://www.youtube.com/watch?v=uvbACgn_AWA">YouTube</a> video!</p>
 <p>The expected outcome is </p>
@@ -151,7 +149,7 @@ I found out that recreating an env is …</p>
 <li>To open a browser</li>
 <li>Type the IP address of the machine (DNS configuration is a topic for later)</li>
 <li>It must serve a new, custom html file called <code>index.html</code> with our string <code>"Hello, How …</code></li></ul>
-                <a class="readmore" href="../installing-apache2-on-debian-linux.html">read more</a>
+                <a class="readmore" href="https://tmolnar0831.github.io/installing-apache2-on-debian-linux.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
