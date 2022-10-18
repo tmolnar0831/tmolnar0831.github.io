@@ -1,9 +1,9 @@
-Title: Ansible installation and thoughts about my future videos
+Title: Ansible installation
 Date: 2022-06-01 07:00
-Modified: 2022-06-01 07:00
+Modified: 2022-10-18 17:00
 Category: Linux
 Tags: python, ansible, pip
-Slug: ansible-install-and-future-videos
+Slug: ansible-install
 Author: Tamas Molnar
 
 # IT Automation
@@ -80,12 +80,6 @@ ansible localhost -m ansible.builtin.command -a "whoami" --become --ask-become-p
 If all command ran without problems, then the system is ready for automating with it.
 
 # The next steps
-
-I will record a video about this installation process in the following weeks.
-
-I will go through the basic Ansible usage, configuration and remote code execution in a short "Ansible basics" series.
-
-Depending on the interest I may record more advanced level Ansible videos.
 
 I accept suggestions on the [Tom's IT Cafe Discord Server](https://discord.gg/4829xMBm).
 
