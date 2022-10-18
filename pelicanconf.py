@@ -1,7 +1,7 @@
 AUTHOR = 'Tamas Molnar'
 SITENAME = "Tom's IT Cafe"
 SITEURL = 'https://tmolnar0831.github.io'
-
+SITESUBTITLE = 'Come, get some!'
 PATH = 'content'
 
 TIMEZONE = 'Europe/Budapest'
