@@ -15,6 +15,8 @@ Ansible is radically simple, it uses YAML for structuring its command files call
 
 It is an [open source project](https://github.com/ansible/ansible) backed and developed by Red Hat.
 
+![Ansible](../images/ansible_logo.png "Ansible logo")
+
 I don't have to explain what does it mean not to use SCM and config management.
 
 Without proper configuration management a simple configuration drift can cause serious service distruptions.
