@@ -1,38 +1,36 @@
-Title: Why you must learn and use Ansible now?
+Title: Why should you learn and use Ansible right now?
 Date: 2022-10-13 07:00
-Modified: 2022-10-13 07:00
+Modified: 2022-10-18 07:00
 Category: Linux
 Tags: python, ansible, automation
-Slug: why-you-must-use-ansible-now
+Slug: why-should-you-learn-ansible-now
 Author: Tamas Molnar
 
-# Ansible
+Whether you have some devices at home, you operate a small office with a couple of computers or you are one of the sysadmins in a large organization, Ansible can work for you (or instead of you).
 
-[Ansible](https://docs.ansible.com/ansible-core/devel/index.html) is a lightweight, easy-to-use configuration management and orchestration framework. It can connect to the hosts on different channels, like on sockets or through network.
+[Ansible](https://docs.ansible.com/ansible-core/devel/index.html) is a lightweight but very powerful configuration management and orchestration framework. It can connect to the hosts on different channels, like network-cli, netconf or through SSH.
 
-Ansible is radically simple as it uses YAML for structuring its command files called "[playbooks](https://docs.ansible.com/ansible-core/devel/playbook_guide/index.html)".
+Ansible is radically simple, it uses YAML for structuring its command files called "[playbooks](https://docs.ansible.com/ansible-core/devel/playbook_guide/index.html)".
 
-It is an [open source project](https://github.com/ansible/ansible) developed by Red Hat.
+It is an [open source project](https://github.com/ansible/ansible) backed and developed by Red Hat.
 
-Without proper configuration management a simple configuration drift can cause serious distruptions.
-Most of the time the configuration just grows incrementally till a point where noone knows the reasons behind decisions.
+I don't have to explain what does it mean not to use SCM and config management.
 
-With configuration as code (infrastructure as code) the administrators check in the configurations into source control management like Git.
-They may feel it a bit of overhead initially, but the reward is a commented history of the evolution of the configuration. Every change has a reason and it gets journaled in a searchable form. Configuration changes are revertable easily.
+Without proper configuration management a simple configuration drift can cause serious service distruptions.
+Most of the time the configuration of an infrastructure just grows incrementally until a point where nobody knows the reasons behind changes. There can be multiple instances of configuration files for a service with slighty different style and data. This causes confusion and major issues. The solution for this more-than-a-decade-old problem was writing scripts for configuration managment. Over the years it evolved to invent tools like [CFEngine](https://cfengine.com/), [Puppet](https://puppet.com/), [Chef](https://www.chef.io/), [Salt](https://saltproject.io/) and [Ansible](https://www.ansible.com/). There are more to mention, but these were the top competitors of the market for long. Both tools went over an evolution, and they targeted different styles of operations. Ansible is simple with a possibility to extend the system as it evolves.
 
-# Docker
+You can install Ansible on your Windows notebook using WSL2 and it can be used to manage any home and/or office infrastructure in a snap. Later on the whole code base can be moved easily to a central Ansible host from where the management can happen. From an easy-to-use and easy-to-understand system the evolution will lead you to use roles and variables till a pont to use Ansible Vault (or later more sophisticated credential management tools). The roles, inventories and (public) variable files can be stored in central source control management as GitLab or GitHub. With minimal effor you are doing infrastructure as code.
 
-The other day I heard something that caught my attention: someone said during a meeting that "Ansible is the past..." and later I heard "...we must use Docker instead".
+With infrastructure as code the administrators push the configurations into source control management. Every change in the configuration is timestamped, logged and commented for avoiding the later confusion. It is very useful even in your home network.
 
-I can only pay attention to my blog after the office hours, so I had time to calm down, so I will not write my initial ideas.
+This approach may feel a bit of overhead initially, but the reward is huge. Every change has a reason, and it is stored in a searchable form. Configuration changes become revertable easily.
 
-In nutshell:
+Ansible helps to avoid configuration drifts too. It effectively automates the repetitive tasks. On the other hand Ansible helps to separate different layers of the operations like credential/secret management, variables and infrastructure code.
 
-1. Docker != Configuration Management
-1. Ansible != Container Technology
+Summarizing the thoughts above:
 
-Docker is an Open Source container technology based on the kernel cgroups.
-
-Based on my experience with Docker and with a private registry, it is recommended to keep the base images small and simple as much as possible.
-
-With complex image building processes the error rate grew exponentionally. The size of the images can be large, and it is more difficult to find the bugs.
+- Ansible is a simple config management and orchestration framework.
+- It helps to standardize the configuration handling.
+- It manages the automation of repetitive tasks.
+- Ansible can scale with your knowledge and with the size of the managed system as well.
+- Ansible is an open source project available on GitHub.
