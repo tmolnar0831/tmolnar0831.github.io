@@ -38,4 +38,4 @@ Summarizing the thoughts above:
 - Ansible can scale with your knowledge and with the size of the managed system as well.
 - Ansible is an open source project available on GitHub.
 
-If you want to share your comments or thoughts, join the [Tom's IT Cafe Discord Server here](https://discord.gg/4829xMBm)!
+If you want to share your comments or thoughts, join the [Tom's IT Cafe Discord Server here](https://discord.gg/YbSYGsQYES)!
