@@ -9,9 +9,11 @@ Author: Tamas Molnar
 
 **In 2022 there is no excuse to do not use a reliable password manager. Period!**
 
-In the times of paswordless authentication the data breaches are more common because of the weak and default password usage. Remembering long, difficult passwords is really counter productive but luckily there is the solution: **password managers**! The time of post-its attached to the display with corporate or private secrets must be already over. Even corporate security starts at an individual level. Today's cyber world demands strong and thorough security considerations even in our personal lives. So, do YOU use weak or shared passwords? Think about it a bit!
+In the time of IoT, smart devices, high speed internet and paswordless authentication the [data breaches](https://duckduckgo.com/?q=password+breaches+2022&atb=v319-1&ia=web) are more common than usual mostly because of the weak and default password usage. Remembering long, difficult passwords is really counter productive but luckily there is the solution: **password managers**! The time of post-its attached to the display with corporate or private secrets must be already over. Even corporate security starts at an individual level. Today's cyber world demands strong and thorough security considerations even in our personal lives. So, do YOU use weak or shared passwords? Do you have any default passwords in your devices? Think about it a bit!
 
-Even the most lightweight personal password manager tool is much better than using nothing. This is why I collected some of the most lightweight, cheap or free password vault tools for personal use.
+Even the most lightweight personal password manager tool is much better than using nothing. A password manager helps to maintain a healthy password policy, and to use a different passwords per site and per service. You don't have to know or remember any password anymore, only the master password of the tool if you use it this way.
+
+
 
 # References
 - [KeePass](https://keepass.info/)
