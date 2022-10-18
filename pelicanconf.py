@@ -26,7 +26,7 @@ SOCIAL = (('Discord', 'https://discord.gg/4829xMBm'),
           ('YouTube', 'https://www.youtube.com/channel/UC28ChJtG8OTp1_5AWwpoh0w'),
           ('GitHub', 'https://github.com/tmolnar0831'))
 
-DEFAULT_PAGINATION = 5
+DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
