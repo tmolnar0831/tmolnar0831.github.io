@@ -1,15 +1,15 @@
 Title: Password Manager 101
-Date: 2022-10-18 18:00
-Modified: 2022-10-18 18:00
+Date: 2022-10-21 08:00
+Modified: 2022-10-21 08:00
 Category: General
 Tags: security
 Slug: password-manager-101
 Author: Tamas Molnar
-Status: draft
+Status: published
 
 **In 2022 there is no excuse to do not use a reliable password manager. Period!**
 
-In the age of IoT, smart devices and high speed internet connection [data breaches](https://duckduckgo.com/?q=password+breaches+2022&atb=v319-1&ia=web) are more common than usual, mostly because of the unhealthy password usage. Remembering long, difficult passwords is really counter productive but luckily there is the solution: **password managers**! The time of post-its attached to the display with corporate or private secrets must be over. Even the corporate security starts on the individual level. Today's cyber world demands strong and thorough security considerations even in our personal lives. We have bank account credentials, paid subscriptions and other stored card informations on different sites. So, do YOU use weak or shared passwords? Do you have any default passwords in your devices? Think about it a bit!
+In the age of [passwordless authentication](https://www.onelogin.com/learn/passwordless-authentication), IoT, smart devices and high speed internet connection [data breaches](https://duckduckgo.com/?q=password+breaches+2022&atb=v319-1&ia=web) are more common than usual, mostly because of the insecure password usage. Remembering long and difficult passwords is really counter productive but luckily there is the solution: **password managers**! The era of post-its attached to the display with corporate or private secrets must be over. Even the corporate security starts with the individual level safety. Today's cyber world demands strong and thorough security considerations even in our personal lives. We have bank account credentials, paid subscriptions and other stored card informations on different websites and mobile devices. So, do YOU use weak or shared passwords? Do you have any default passwords in your devices? Think about it a bit!
 
 Even the most lightweight personal password manager tool is much better than using nothing. A password manager helps to maintain a healthy password policy, and to use a different passwords per site and per service. You don't have to know or remember any password anymore, only the master password of the tool if you use it that way.
 
@@ -28,7 +28,7 @@ One of the oldest and most lightweight password vault tool is [KeePass](https://
 
 [PassBolt](https://signup.passbolt.com/pricing/cloud) is both SaaS and on premises tool, but it is rather for small teams and businesses.
 
-Both tools I meantioned above have their pros and cons, but using one is much better than using nothing.
+Both tools I mentioned above have their pros and cons, but using one is much better than using nothing.
 
 # Basic password education
 
