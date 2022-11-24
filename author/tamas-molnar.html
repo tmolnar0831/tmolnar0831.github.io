@@ -22,7 +22,62 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../password-manager-101.html">Password Manager 101</a></h1>
+                    <h1 class="entry-title"><a href="../fixing-kali-kex.html">Fixing the "Error connecting..." issue in Kali KeX on WSL</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-11-24T10:00:00+01:00">
+                Published: Thu 24 November 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-11-24T10:00:00+01:00">
+                Updated: Thu 24 November 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="../category/windows.html">Windows</a>.</p>
+<p>tags: <a href="../tag/windows.html">windows</a> <a href="../tag/wsl.html">wsl</a> <a href="../tag/howto.html">howto</a> <a href="../tag/kali.html">kali</a> <a href="../tag/kex.html">kex</a> </p>
+</footer><!-- /.post-info --><p>Requirements:</p>
+<ol>
+<li>Kali distro is installed</li>
+<li>KeX is installed</li>
+<li>Kali is WSL version 2</li>
+<li>Coffee is ready for consumption</li>
+</ol>
+<p>Time to time the Kali desktop on WSL stops working and spits out the following message:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Error</span> <span class="nv">connecting</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">KeX</span> <span class="nv">server</span>.
+<span class="nv">Please</span> <span class="nv">try</span> <span class="s2">&quot;</span><span class="s">kex start</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">start</span> <span class="nv">the</span> <span class="nv">service</span>.
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">server</span> <span class="nv">fails</span> <span class="nv">to</span> <span class="nv">start</span>, <span class="nv">please</span> <span class="nv">try</span> <span class="s2">&quot;</span><span class="s">kex kill</span><span class="s2">&quot;</span> <span class="nv">or</span> <span class="nv">restart</span> <span class="nv">your</span> <span class="nv">WSL2</span> <span class="nv">session</span> <span class="nv">and</span> <span class="nv">try</span> <span class="nv">again</span>.
+</code></pre></div>
+
+<p>Certainly the "solution" from the error message does not work.</p>
+<p>In my case the socket for the VNC server "stuck" and it causes the isse, so my solution is:</p>
+<p>In the <strong>Kali terminal</strong>:</p>
+<div class="highlight"><pre><span></span><code>sudo rm -rf /tmp/.X1-lock
+</code></pre></div>
+
+<p>Then in <strong>PowerShell</strong> I shut down every running instance:</p>
+<div class="highlight"><pre><span></span><code>wsl --shutdown
+</code></pre></div>
+
+<p>After it starting a Kali will be able to start the TigerVNC server and the connection will work. Just use</p>
+<div class="highlight"><pre><span></span><code>kex
+</code></pre></div>
+
+<p>If you have a comment or other opinion, visit <a href="https://discord.gg/YbSYGsQYES">Tom's IT Cafe Discord Server</a> and share it!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../password-manager-101.html" rel="bookmark"
+                           title="Permalink to Password Manager 101">Password Manager 101</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-10-21T08:00:00+02:00">
                 Published: Fri 21 October 2022
@@ -37,41 +92,11 @@
         </address>
 <p>In <a href="../category/general.html">General</a>.</p>
 <p>tags: <a href="../tag/security.html">security</a> </p>
-</footer><!-- /.post-info --><p><strong>In 2022 there is no excuse to do not use a reliable password manager. Period!</strong></p>
-<p>In the age of <a href="https://www.onelogin.com/learn/passwordless-authentication">passwordless authentication</a>, IoT, smart devices and high speed internet connection <a href="https://duckduckgo.com/?q=password+breaches+2022&amp;atb=v319-1&amp;ia=web">data breaches</a> are more common than usual, mostly because of the insecure password usage. Remembering long and difficult passwords is really counter productive but luckily there is the solution: <strong>password managers</strong>! The era of post-its attached to the display with corporate or private secrets must be over. Even the corporate security starts with the individual level safety. Today's cyber world demands strong and thorough security considerations even in our personal lives. We have bank account credentials, paid subscriptions and other stored card informations on different websites and mobile devices. So, do YOU use weak or shared passwords? Do you have any default passwords in your devices? Think about it a bit!</p>
-<p>Even the most lightweight personal password manager tool is much better than using nothing. A password manager helps to maintain a healthy password policy, and to use a different passwords per site and per service. You don't have to know or remember any password anymore, only the master password of the tool if you use it that way.</p>
-<p>Considering the method of installation of the software you will see two groups:</p>
-<ol>
-<li>Cloud based password managers (you just use it, don't manage it).</li>
-<li>On premises password managers (you install, manage, backup and use it).</li>
-</ol>
-<p>There are tools on the market you can use in the cloud and/or buy an installer.</p>
-<p>One of the oldest and most lightweight password vault tool is <a href="https://keepass.info/">KeePass</a>. It is available as an installer or a simple portable package. The database file is standard, it can be opened from Linux, Windows and Android as well. The database file can be stored on OneDrive or DropBox, and it can be used from different devices (not in parallel). You can use a master password for opening the database or it is possible to use user keys instead (or both of them, of course). KeePass is open source and free to use. It is an on premises tool.</p>
-<p><a href="https://bitwarden.com/pricing/">BitWarden</a> and <a href="https://www.lastpass.com/pricing">LastPass</a> are cloud based password vaults, and they have packages for personal use <strong>for free</strong>. For about $5 per month you can buy even more features in the personal package.</p>
-<p><a href="https://1password.com/sign-up/">1Password</a> is also a cloud based password vault solution with personal packages for around $3.</p>
-<p><a href="https://signup.passbolt.com/pricing/cloud">PassBolt</a> is both SaaS and on premises tool, but it is rather for small teams and businesses.</p>
-<p>Both tools I mentioned above have their pros and cons, but using one is much better than using nothing.</p>
-<h1>Basic password education</h1>
-<p>Do not use the default password of any service or device.</p>
-<p>Avoid using the same password for different sites and services. Use different passwords for work and for personal stuff.</p>
-<p>Never use dictionary based passwords! They can be guessed with bruteforce in less than two minutes. It is true even for the longer (12-16 character) words.</p>
-<p>For a healthy password policy use special characters, lowercase and uppercase characters and numbers wherever is possible.</p>
-<p>Do not copy-paste passwords into plain text files, don't type them if possible. Use the tools' provided copy and paste methods or their plugins.</p>
-<p>In 2022 there is <strong>NO</strong> excuse to do not use a password vault! IT Security is everybody's responsibility, in the office and at home as well. Please take it seriously.</p>
-<p>If you have a comment or other opinion, visit <a href="https://discord.gg/YbSYGsQYES">Tom's IT Cafe Discord Server</a> and share it!</p>
-<h1>References</h1>
-<ul>
-<li><a href="https://keepass.info/">KeePass</a></li>
-<li><a href="https://1password.com/">1Password</a></li>
-<li><a href="https://www.lastpass.com/">LastPass</a></li>
-<li><a href="https://bitwarden.com/">BitWarden</a></li>
-<li><a href="https://www.passbolt.com/">PassBolt</a></li>
-</ul>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p><strong>In 2022 there is no excuse to do not use a reliable password manager. Period!</strong></p>
+<p>In the age of <a href="https://www.onelogin.com/learn/passwordless-authentication">passwordless authentication</a>, IoT, smart devices and high speed internet connection <a href="https://duckduckgo.com/?q=password+breaches+2022&amp;atb=v319-1&amp;ia=web">data breaches</a> are more common than usual, mostly because of the insecure password usage. Remembering long and difficult passwords is really …</p>
+                <a class="readmore" href="../password-manager-101.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -299,34 +324,6 @@ I found out that recreating an env is …</p>
 </ul>
 <h1>Kali …</h1>
                 <a class="readmore" href="../installing-kali-on-wsl.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="../how-to-backup-and-restore-wsl.html" rel="bookmark"
-                           title="Permalink to How to backup and restore a distro on WSL">How to backup and restore a distro on WSL</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2022-05-02T00:00:00+02:00">
-                Published: Mon 02 May 2022
-        </abbr>
-		<br />
-        <abbr class="modified" title="2022-05-02T00:00:00+02:00">
-                Updated: Mon 02 May 2022
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
-        </address>
-<p>In <a href="../category/windows.html">Windows</a>.</p>
-<p>tags: <a href="../tag/windows.html">windows</a> <a href="../tag/wsl.html">wsl</a> <a href="../tag/howto.html">howto</a> </p>
-</footer><!-- /.post-info -->                <p>Follow the process on my <a href="https://youtu.be/dx2WoQo8hho">YouTube video</a>!</p>
-<p>Backing up and restoring WSL distros is easier than anyone can think! It is simply an export of the stopped distro that can be moved on an external disk or share. Restoring a backup is importing the generated tar archive.</p>
-<p>Moreover we can …</p>
-                <a class="readmore" href="../how-to-backup-and-restore-wsl.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->

@@ -22,7 +22,62 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../upgrade-debian-in-wsl.html">How to upgrade to Debian Bullseye from Buster in WSL</a></h1>
+                    <h1 class="entry-title"><a href="../fixing-kali-kex.html">Fixing the "Error connecting..." issue in Kali KeX on WSL</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-11-24T10:00:00+01:00">
+                Published: Thu 24 November 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-11-24T10:00:00+01:00">
+                Updated: Thu 24 November 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="../category/windows.html">Windows</a>.</p>
+<p>tags: <a href="../tag/windows.html">windows</a> <a href="../tag/wsl.html">wsl</a> <a href="../tag/howto.html">howto</a> <a href="../tag/kali.html">kali</a> <a href="../tag/kex.html">kex</a> </p>
+</footer><!-- /.post-info --><p>Requirements:</p>
+<ol>
+<li>Kali distro is installed</li>
+<li>KeX is installed</li>
+<li>Kali is WSL version 2</li>
+<li>Coffee is ready for consumption</li>
+</ol>
+<p>Time to time the Kali desktop on WSL stops working and spits out the following message:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Error</span> <span class="nv">connecting</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">KeX</span> <span class="nv">server</span>.
+<span class="nv">Please</span> <span class="nv">try</span> <span class="s2">&quot;</span><span class="s">kex start</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">start</span> <span class="nv">the</span> <span class="nv">service</span>.
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">server</span> <span class="nv">fails</span> <span class="nv">to</span> <span class="nv">start</span>, <span class="nv">please</span> <span class="nv">try</span> <span class="s2">&quot;</span><span class="s">kex kill</span><span class="s2">&quot;</span> <span class="nv">or</span> <span class="nv">restart</span> <span class="nv">your</span> <span class="nv">WSL2</span> <span class="nv">session</span> <span class="nv">and</span> <span class="nv">try</span> <span class="nv">again</span>.
+</code></pre></div>
+
+<p>Certainly the "solution" from the error message does not work.</p>
+<p>In my case the socket for the VNC server "stuck" and it causes the isse, so my solution is:</p>
+<p>In the <strong>Kali terminal</strong>:</p>
+<div class="highlight"><pre><span></span><code>sudo rm -rf /tmp/.X1-lock
+</code></pre></div>
+
+<p>Then in <strong>PowerShell</strong> I shut down every running instance:</p>
+<div class="highlight"><pre><span></span><code>wsl --shutdown
+</code></pre></div>
+
+<p>After it starting a Kali will be able to start the TigerVNC server and the connection will work. Just use</p>
+<div class="highlight"><pre><span></span><code>kex
+</code></pre></div>
+
+<p>If you have a comment or other opinion, visit <a href="https://discord.gg/YbSYGsQYES">Tom's IT Cafe Discord Server</a> and share it!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../upgrade-debian-in-wsl.html" rel="bookmark"
+                           title="Permalink to How to upgrade to Debian Bullseye from Buster in WSL">How to upgrade to Debian Bullseye from Buster in WSL</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-05-13T00:00:00+02:00">
                 Published: Fri 13 May 2022
@@ -37,108 +92,12 @@
         </address>
 <p>In <a href="../category/windows.html">Windows</a>.</p>
 <p>tags: <a href="../tag/linux.html">linux</a> <a href="../tag/wsl.html">wsl</a> <a href="../tag/howto.html">howto</a> <a href="../tag/upgrade.html">upgrade</a> </p>
-</footer><!-- /.post-info --><p>If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.</p>
+</footer><!-- /.post-info -->                <p>If we installed a Debian WSL distro on our system, and in the mean time a new version is released, it is possible to upgrade.</p>
 <p>The distribution upgrade happens almost the same way as on other virtual and physical platforms.</p>
-<p>I upgrade my WSL distros while I write this post: the current Debian oldstable is 10.12 (buster),
-and I am going to upgrade to 11.03 (bullseye).</p>
-<p>My approach is the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">prepare</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">backup</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">upgrade</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">clean</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">checks</span><span class="w"></span>
-</code></pre></div>
-
-<h1>Preparation</h1>
-<p>Before we start, check the current Debian version to make sure on which version should we upgrade:</p>
-<div class="highlight"><pre><span></span><code>$ cat /etc/debian_version 
-<span class="m">10</span>.12
-</code></pre></div>
-
-<p>On the <a href="https://www.debian.org/releases/">releases page</a> of the Debian homepage we can double-check the release names and version numbers.</p>
-<div class="highlight"><pre><span></span><code>Debian 10 == buster
-Debian 11 == bullseye
-</code></pre></div>
-
-<p>Now we know that we want to upgrade from 10 to 11. Let's read the <a href="https://www.debian.org/releases/stable/amd64/release-notes/index.en.html">release notes</a> and make sure we understand the consequences of the upgrade!</p>
-<h1>Backup</h1>
-<p>Taking a backup of a WSL distro is realatively easy: we export the distro to a tar archive.</p>
-<p>Terminate the WSL distro and take a backup of it as I show it in my <a href="https://youtu.be/dx2WoQo8hho">video post</a> on YouTube.</p>
-<p>In case of emergency we can simply import back the the current state of the machine with its files and stuff.</p>
-<h1>The upgrade</h1>
-<p>The actual Debian distribution upgrade happens as the upgrade documentation states it.
-In the first phase the minimal system is being changed, then in the second phase the full upgrade happens.</p>
-<p>Let's make sure we start with the latest Debian 10 version!</p>
-<p>Update the current Debian buster version with the latest patches:</p>
-<div class="highlight"><pre><span></span><code>sudo apt update -y &amp;&amp; sudo apt full-upgrade -y
-</code></pre></div>
-
-<p>Remove the unnecessary packages:</p>
-<div class="highlight"><pre><span></span><code>sudo apt autoremove
-</code></pre></div>
-
-<p>At this point we have a <strong>clean state</strong> of the <strong>freshest</strong> Debian Buster, so we are ready to change the package repository configuration, and point it to the new release.</p>
-<div class="highlight"><pre><span></span><code>sudo sed -i &#39;s/buster/bullseye/g&#39; /etc/apt/sources.list
-</code></pre></div>
-
-<p>The bullseye security repo follows a different convention than the buster repo did.
-Find the following line in the <code>/etc/apt/sources.list</code> file:</p>
-<div class="highlight"><pre><span></span><code><span class="k">deb</span><span class="w"> </span><span class="s">http://security.debian.org/debian-security</span><span class="w"> </span><span class="kp">bullseye/updates</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
-</code></pre></div>
-
-<p>And change it to:</p>
-<div class="highlight"><pre><span></span><code><span class="k">deb</span><span class="w"> </span><span class="s">http://security.debian.org/debian-security</span><span class="w"> </span><span class="kp">bullseye-security</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
-</code></pre></div>
-
-<p>Thus the <code>/etc/apt/sources.list</code> file should look something like this:</p>
-<div class="highlight"><pre><span></span><code><span class="k">deb</span><span class="w"> </span><span class="s">http://deb.debian.org/debian</span><span class="w"> </span><span class="kp">bullseye</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
-<span class="k">deb</span><span class="w"> </span><span class="s">http://deb.debian.org/debian</span><span class="w"> </span><span class="kp">bullseye-updates</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
-<span class="k">deb</span><span class="w"> </span><span class="s">http://security.debian.org/debian-security</span><span class="w"> </span><span class="kp">bullseye-security</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
-<span class="k">deb</span><span class="w"> </span><span class="s">http://ftp.debian.org/debian</span><span class="w"> </span><span class="kp">bullseye-backports</span><span class="w"> </span><span class="kp">main</span><span class="w"></span>
-</code></pre></div>
-
-<p>Let's update the package repository cache!</p>
-<div class="highlight"><pre><span></span><code>$ sudo apt update
-Hit:1 http://ftp.debian.org/debian bullseye-backports InRelease
-Hit:2 http://deb.debian.org/debian bullseye InRelease
-Hit:3 http://security.debian.org/debian-security bullseye-security InRelease
-Hit:4 http://deb.debian.org/debian bullseye-updates InRelease
-Reading package lists... Done
-Building dependency tree
-Reading state information... Done
-<span class="m">396</span> packages can be upgraded. Run <span class="s1">&#39;apt list --upgradable&#39;</span> to see them.
-</code></pre></div>
-
-<p>If everything is fine and the command ran without any error then the upgrade should happen in two phases:
-1. Minimal upgrade
-1. Full upgrade</p>
-<h2>Minimal upgrade</h2>
-<p>Upgrade the base system with the bullseye packages:</p>
-<div class="highlight"><pre><span></span><code>sudo apt upgrade --without-new-pkgs
-</code></pre></div>
-
-<p>If the upgrade ran without any errors, then let's clean up the unnecessary packages:</p>
-<div class="highlight"><pre><span></span><code>sudo apt autoremove
-</code></pre></div>
-
-<h2>Full upgrade</h2>
-<p>The full upgrade happens with the following command:</p>
-<div class="highlight"><pre><span></span><code>sudo apt full-upgrade
-</code></pre></div>
-
-<p>Again if everything ran without any issue, let's clean up the packages again:</p>
-<div class="highlight"><pre><span></span><code>sudo apt autoremove
-</code></pre></div>
-
-<p>The distribution upgrade is done at this point, checks and monitoring can be done depending on the function of the system.</p>
-<h1>Post checks</h1>
-<p>Let's see if the upgrade was successful and we have Debian 11:</p>
-<div class="highlight"><pre><span></span><code>$ cat /etc/debian_version
-<span class="m">11</span>.3
-</code></pre></div>
-
-<p>The further checks depend on the system's function.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>I upgrade my WSL distros while I write this post …</p>
+                <a class="readmore" href="../upgrade-debian-in-wsl.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

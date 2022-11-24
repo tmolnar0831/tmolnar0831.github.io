@@ -22,7 +22,62 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../installing-kali-on-wsl.html">Installing Kali Linux on WSL</a></h1>
+                    <h1 class="entry-title"><a href="../fixing-kali-kex.html">Fixing the "Error connecting..." issue in Kali KeX on WSL</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-11-24T10:00:00+01:00">
+                Published: Thu 24 November 2022
+        </abbr>
+		<br />
+        <abbr class="modified" title="2022-11-24T10:00:00+01:00">
+                Updated: Thu 24 November 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/tamas-molnar.html">Tamas Molnar</a>
+        </address>
+<p>In <a href="../category/windows.html">Windows</a>.</p>
+<p>tags: <a href="../tag/windows.html">windows</a> <a href="../tag/wsl.html">wsl</a> <a href="../tag/howto.html">howto</a> <a href="../tag/kali.html">kali</a> <a href="../tag/kex.html">kex</a> </p>
+</footer><!-- /.post-info --><p>Requirements:</p>
+<ol>
+<li>Kali distro is installed</li>
+<li>KeX is installed</li>
+<li>Kali is WSL version 2</li>
+<li>Coffee is ready for consumption</li>
+</ol>
+<p>Time to time the Kali desktop on WSL stops working and spits out the following message:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">Error</span> <span class="nv">connecting</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">KeX</span> <span class="nv">server</span>.
+<span class="nv">Please</span> <span class="nv">try</span> <span class="s2">&quot;</span><span class="s">kex start</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">start</span> <span class="nv">the</span> <span class="nv">service</span>.
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">server</span> <span class="nv">fails</span> <span class="nv">to</span> <span class="nv">start</span>, <span class="nv">please</span> <span class="nv">try</span> <span class="s2">&quot;</span><span class="s">kex kill</span><span class="s2">&quot;</span> <span class="nv">or</span> <span class="nv">restart</span> <span class="nv">your</span> <span class="nv">WSL2</span> <span class="nv">session</span> <span class="nv">and</span> <span class="nv">try</span> <span class="nv">again</span>.
+</code></pre></div>
+
+<p>Certainly the "solution" from the error message does not work.</p>
+<p>In my case the socket for the VNC server "stuck" and it causes the isse, so my solution is:</p>
+<p>In the <strong>Kali terminal</strong>:</p>
+<div class="highlight"><pre><span></span><code>sudo rm -rf /tmp/.X1-lock
+</code></pre></div>
+
+<p>Then in <strong>PowerShell</strong> I shut down every running instance:</p>
+<div class="highlight"><pre><span></span><code>wsl --shutdown
+</code></pre></div>
+
+<p>After it starting a Kali will be able to start the TigerVNC server and the connection will work. Just use</p>
+<div class="highlight"><pre><span></span><code>kex
+</code></pre></div>
+
+<p>If you have a comment or other opinion, visit <a href="https://discord.gg/YbSYGsQYES">Tom's IT Cafe Discord Server</a> and share it!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../installing-kali-on-wsl.html" rel="bookmark"
+                           title="Permalink to Installing Kali Linux on WSL">Installing Kali Linux on WSL</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-05-11T00:00:00+02:00">
                 Published: Wed 11 May 2022
@@ -37,49 +92,16 @@
         </address>
 <p>In <a href="../category/windows.html">Windows</a>.</p>
 <p>tags: <a href="../tag/linux.html">linux</a> <a href="../tag/wsl.html">wsl</a> <a href="../tag/windows.html">windows</a> <a href="../tag/howto.html">howto</a> </p>
-</footer><!-- /.post-info --><h1>Pre-install steps</h1>
+</footer><!-- /.post-info -->                <h1>Pre-install steps</h1>
 <ul>
 <li>WSL must be installed on the host machine prior this task. Microsoft has an <a href="https://docs.microsoft.com/en-us/windows/wsl/install">extensive documentation</a> on the topic.</li>
 <li>Basic WSL management skills are nice to have, like importing/exporting/removing WSL instances. Use <code>wsl --help</code> for reference.</li>
 <li>Read the <a href="https://www.kali.org/get-kali/#kali-wsl">Kali documentation</a> about the topic as well.</li>
 </ul>
-<h1>Kali WSL installation</h1>
-<p>Install the Kali WSL machine from the <a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07?hl=en-us&amp;gl=US">Microsoft Store</a> and do NOT use the wsl.exe command for it. At the time of writing this document there is an error in the system when installing Kali with wsl.exe, and it installs and outdated version. Use the <a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07?hl=en-us&amp;gl=US">Microsoft Store</a> instead.</p>
-<p>After installing the Kali machine start it from the Start menu, let it install the necessary services and set up the user.</p>
-<p>In the end of the initial setup update the system with the apt:</p>
-<div class="highlight"><pre><span></span><code>sudo apt update &amp;&amp; sudo apt full-upgrade -y
-</code></pre></div>
-
-<p>Let the process finish the upgrade, then remove the unnecessary files:</p>
-<div class="highlight"><pre><span></span><code>sudo apt autoremove
-</code></pre></div>
-
-<h1>Win-KeX installation (Kali desktop on Windows WSL)</h1>
-<p>As Microsoft more and more integrates Linux in its operating system the usability is better day by day.
-Win-KeX is giving a great Kali desktop environment on our Windows system.</p>
-<p>Install the Win-KeX package:</p>
-<div class="highlight"><pre><span></span><code>sudo apt install -y kali-win-kex
-</code></pre></div>
-
-<p>Then if we have enough patience and space, then we can install the whole Kali linux toolset:</p>
-<div class="highlight"><pre><span></span><code>sudo apt install -y kali-linux-large
-</code></pre></div>
-
-<p>When the process stopped then we have all the tools we need for our Cyber Security learning journey.</p>
-<h1>Starting Win-KeX from Kali</h1>
-<p>I use <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&amp;gl=US">Windows Terminal</a> for its features and simplicity. </p>
-<p>After starting the Kali in terminal, KeX can be activated with the following command:</p>
-<div class="highlight"><pre><span></span><code>kex
-</code></pre></div>
-
-<p>It opens a TigerVNC session where the context menu can be opened by hitting the F8 key.</p>
-<p>Now we can use our usual Kali tools on Windows running a Kali WSL box.</p>
-<p>More <a href="https://www.kali.org/docs/wsl/win-kex/">documentation</a> about the possibilities.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<h1>Kali …</h1>
+                <a class="readmore" href="../installing-kali-on-wsl.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

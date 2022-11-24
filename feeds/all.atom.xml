@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-10-21T08:00:00+02:00</updated><subtitle>Come, get some!</subtitle><entry><title>Password Manager 101</title><link href="https://tmolnar0831.github.io/password-manager-101.html" rel="alternate"></link><published>2022-10-21T08:00:00+02:00</published><updated>2022-10-21T08:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-10-21:/password-manager-101.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;In 2022 there is no excuse to do not use a reliable password manager. Period!&lt;/strong&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tom's IT Cafe</title><link href="https://tmolnar0831.github.io/" rel="alternate"></link><link href="https://tmolnar0831.github.io/feeds/all.atom.xml" rel="self"></link><id>https://tmolnar0831.github.io/</id><updated>2022-11-24T10:00:00+01:00</updated><subtitle>Come, get some!</subtitle><entry><title>Fixing the "Error connecting..." issue in Kali KeX on WSL</title><link href="https://tmolnar0831.github.io/fixing-kali-kex.html" rel="alternate"></link><published>2022-11-24T10:00:00+01:00</published><updated>2022-11-24T10:00:00+01:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-11-24:/fixing-kali-kex.html</id><summary type="html">&lt;p&gt;Requirements:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Kali distro is installed&lt;/li&gt;
+&lt;li&gt;KeX is installed&lt;/li&gt;
+&lt;li&gt;Kali is WSL version 2&lt;/li&gt;
+&lt;li&gt;Coffee is ready for consumption&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Time to time the Kali desktop on WSL stops working and spits out the following message:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Error&lt;/span&gt; &lt;span class="nv"&gt;connecting&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;KeX&lt;/span&gt; &lt;span class="nv"&gt;server&lt;/span&gt;.
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;try&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;kex start&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;start&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;service&lt;/span&gt;.
+&lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="nv"&gt;the …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Requirements:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Kali distro is installed&lt;/li&gt;
+&lt;li&gt;KeX is installed&lt;/li&gt;
+&lt;li&gt;Kali is WSL version 2&lt;/li&gt;
+&lt;li&gt;Coffee is ready for consumption&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Time to time the Kali desktop on WSL stops working and spits out the following message:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Error&lt;/span&gt; &lt;span class="nv"&gt;connecting&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;KeX&lt;/span&gt; &lt;span class="nv"&gt;server&lt;/span&gt;.
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;try&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;kex start&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;start&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;service&lt;/span&gt;.
+&lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;server&lt;/span&gt; &lt;span class="nv"&gt;fails&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;start&lt;/span&gt;, &lt;span class="nv"&gt;please&lt;/span&gt; &lt;span class="nv"&gt;try&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;kex kill&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;restart&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;WSL2&lt;/span&gt; &lt;span class="nv"&gt;session&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;again&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Certainly the "solution" from the error message does not work.&lt;/p&gt;
+&lt;p&gt;In my case the socket for the VNC server "stuck" and it causes the isse, so my solution is:&lt;/p&gt;
+&lt;p&gt;In the &lt;strong&gt;Kali terminal&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo rm -rf /tmp/.X1-lock
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then in &lt;strong&gt;PowerShell&lt;/strong&gt; I shut down every running instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;wsl --shutdown
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After it starting a Kali will be able to start the TigerVNC server and the connection will work. Just use&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;kex
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you have a comment or other opinion, visit &lt;a href="https://discord.gg/YbSYGsQYES"&gt;Tom's IT Cafe Discord Server&lt;/a&gt; and share it!&lt;/p&gt;</content><category term="Windows"></category><category term="windows"></category><category term="wsl"></category><category term="howto"></category><category term="kali"></category><category term="kex"></category></entry><entry><title>Password Manager 101</title><link href="https://tmolnar0831.github.io/password-manager-101.html" rel="alternate"></link><published>2022-10-21T08:00:00+02:00</published><updated>2022-10-21T08:00:00+02:00</updated><author><name>Tamas Molnar</name></author><id>tag:tmolnar0831.github.io,2022-10-21:/password-manager-101.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;In 2022 there is no excuse to do not use a reliable password manager. Period!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In the age of &lt;a href="https://www.onelogin.com/learn/passwordless-authentication"&gt;passwordless authentication&lt;/a&gt;, IoT, smart devices and high speed internet connection &lt;a href="https://duckduckgo.com/?q=password+breaches+2022&amp;amp;atb=v319-1&amp;amp;ia=web"&gt;data breaches&lt;/a&gt; are more common than usual, mostly because of the insecure password usage. Remembering long and difficult passwords is really …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;In 2022 there is no excuse to do not use a reliable password manager. Period!&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In the age of &lt;a href="https://www.onelogin.com/learn/passwordless-authentication"&gt;passwordless authentication&lt;/a&gt;, IoT, smart devices and high speed internet connection &lt;a href="https://duckduckgo.com/?q=password+breaches+2022&amp;amp;atb=v319-1&amp;amp;ia=web"&gt;data breaches&lt;/a&gt; are more common than usual, mostly because of the insecure password usage. Remembering long and difficult passwords is really counter productive but luckily there is the solution: &lt;strong&gt;password managers&lt;/strong&gt;! The era of post-its attached to the display with corporate or private secrets must be over. Even the corporate security starts with the individual level safety. Today's cyber world demands strong and thorough security considerations even in our personal lives. We have bank account credentials, paid subscriptions and other stored card informations on different websites and mobile devices. So, do YOU use weak or shared passwords? Do you have any default passwords in your devices? Think about it a bit!&lt;/p&gt;
 &lt;p&gt;Even the most lightweight personal password manager tool is much better than using nothing. A password manager helps to maintain a healthy password policy, and to use a different passwords per site and per service. You don't have to know or remember any password anymore, only the master password of the tool if you use it that way.&lt;/p&gt;
