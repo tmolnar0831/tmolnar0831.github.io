@@ -1,5 +1,5 @@
 Title: Fixing the "Error connecting..." issue in Kali KeX on WSL
-Date: 2022-11-24 10:00
+Date: 2022-11-24 09:00
 Modified: 2022-11-24 10:00
 Category: Windows
 Tags: windows, wsl, howto, kali, kex
